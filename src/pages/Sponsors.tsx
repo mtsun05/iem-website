@@ -19,16 +19,16 @@ const Sponsors = () => {
 
   return (
     <div className="flex justify-center container min-w-screen">
-      <div className="flex flex-col w-2/3 min-h-screen">
+      <div className="flex flex-col min-h-screen">
         <div
           ref={header}
           className={`${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1500 mt-20`}
+          } transition-all duration-1000 mt-20 border-b-[0.25px] border-neutral-400/30 px-40 pb-20`}
         >
-          <span className="text-7xl text-white text-left mb-3">
+          <span className="text-center text-7xl text-white mb-3">
             <span className="text-transparent bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text italic">
               Our sponsors
             </span>{" "}
@@ -44,53 +44,61 @@ const Sponsors = () => {
             <FiArrowRight className="absolute -right-5 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-2" />
           </a>
         </div>
-        <div
-          ref={lithium}
-          className={`${
-            lithiumVisible ? "opacity-100" : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1500 flex flex-col items-center my-8 p-6`}
-        >
-          <ShinyText
-            color="lithium"
-            speed={3}
-            className="text-2xl italic mb-5"
-            text="Lithium Level"
-          />
-          <SponsorDisplay icons={lithiumIcons} iconSizePx={200} />
+        <div className="border-b-[0.25px] border-neutral-400/30">
+          <div
+            ref={lithium}
+            className={`${
+              lithiumVisible
+                ? "opacity-100"
+                : "opacity-0 blur-lg translate-y-30"
+            } transition-all duration-1000 flex flex-col items-center py-8 border-x-[0.25px] border-neutral-400/30 mx-40`}
+          >
+            <ShinyText
+              color="lithium"
+              speed={3}
+              className="text-2xl italic mb-5"
+              text="Lithium Level"
+            />
+            <SponsorDisplay icons={lithiumIcons} iconSizePx={200} />
+          </div>
         </div>
-        <div
-          ref={gold}
-          className={`${
-            goldVisible ? "opacity-100" : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1500 flex flex-col items-center my-8 p-6`}
-        >
-          <ShinyText
-            color="gold"
-            speed={3}
-            className="text-2xl italic mb-5"
-            text="Gold Level"
-          />
-          <SponsorDisplay icons={goldIcons} iconSizePx={120} />
+        <div className="border-b-[0.25px] border-neutral-400/30">
+          <div
+            ref={gold}
+            className={`${
+              goldVisible ? "opacity-100" : "opacity-0 blur-lg translate-y-30"
+            } transition-all duration-1000 flex flex-col items-center py-8 p-6 border-x-[0.25px] border-neutral-400/30 mx-40`}
+          >
+            <ShinyText
+              color="gold"
+              speed={3}
+              className="text-2xl italic mb-5"
+              text="Gold Level"
+            />
+            <SponsorDisplay icons={goldIcons} iconSizePx={120} />
+          </div>
         </div>
-        <div
-          ref={orange}
-          className={`${
-            orangeVisible ? "opacity-100" : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1500 flex flex-col items-center my-8 p-6`}
-        >
-          <ShinyText
-            color="orange"
-            speed={3}
-            className="text-2xl italic mb-5"
-            text="Orange Level"
-          />
-          <SponsorDisplay icons={lithiumIcons} iconSizePx={100} />
+        <div className="border-b-[0.25px] border-neutral-400/30">
+          <div
+            ref={orange}
+            className={`${
+              orangeVisible ? "opacity-100" : "opacity-0 blur-lg translate-y-30"
+            } transition-all duration-1000 flex flex-col items-center py-8 p-6 border-x-[0.25px] border-neutral-400/30 mx-40`}
+          >
+            <ShinyText
+              color="orange"
+              speed={3}
+              className="text-2xl italic mb-5"
+              text="Orange Level"
+            />
+            <SponsorDisplay icons={lithiumIcons} iconSizePx={100} />
+          </div>
         </div>
         <div
           ref={blue}
           className={`${
             blueVisible ? "opacity-100" : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1500 flex flex-col items-center my-8 p-6`}
+          } transition-all duration-1000 flex flex-col items-center py-8 p-6 border-x-[0.25px] border-neutral-400/30 mx-40`}
         >
           <ShinyText
             color="blue"

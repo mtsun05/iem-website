@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full text-white px-10 min-h-[300px] flex items-center justify-center py-16">
+    <footer className="w-full text-white px-10 min-h-[300px] flex items-center justify-center pt-56 pb-16 bg-[#131313] border-t-[0.25px] border-neutral-400/30">
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-12">
         <div className="flex flex-col items-start">
           <a href="/home">

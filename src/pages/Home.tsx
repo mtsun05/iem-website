@@ -94,7 +94,7 @@ function Home() {
                   EngineeringVisible
                     ? "translate-x-0 opacity-100 blur-none"
                     : "-translate-x-30 opacity-0 blur-lg"
-                } transition-all duration-1500`}
+                } transition-all duration-1000`}
               >
                 Engineering
               </span>
@@ -104,7 +104,7 @@ function Home() {
                   ExcellenceVisible
                     ? "translate-x-0 opacity-100 blur-none"
                     : "translate-x-30 opacity-0 blur-lg"
-                } transition-all duration-1500 mb-5`}
+                } transition-all duration-1000 mb-5`}
               >
                 Excellence.
               </span>
@@ -113,7 +113,7 @@ function Home() {
                   EngineeringVisible
                     ? "translate-y-0 opacity-100 blur-none"
                     : "translate-y-30 opacity-0 blur-lg"
-                } transition-all duration-1500 delay-500 flex flex-row`}
+                } transition-all duration-1000 delay-500 flex flex-row`}
               >
                 <ButtonLink marginRight path="/teams">
                   Our Teams
@@ -123,14 +123,14 @@ function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center sm:items-start transition-all duration-1000 top-20 my-20">
+          <div className="flex flex-col items-center sm:items-start transition-all duration-1000 border-y-[0.25px] border-neutral-400/30 py-20 w-fit">
             <span
               ref={WelcomeSpanRef}
               className={`${
                 WelcomeSpanVisible
                   ? "translate-y-0 opacity-100 blur-none"
                   : "translate-y-30 opacity-0 blur-lg"
-              } transition-all duration-1500 text-neutral-400 xl:w-fit text-left text-4xl sm:text-6xl mb-5 md:mx-60`}
+              } transition-all duration-1000 text-neutral-400 xl:w-fit text-left text-4xl sm:text-6xl mb-5 md:mx-60`}
             >
               <span className="font-light">
                 Welcome to <br />
@@ -140,7 +140,7 @@ function Home() {
                   WelcomeSpanVisible
                     ? "translate-y-0 opacity-100"
                     : "translate-y-100 opacity-0"
-                } inline-block transition-all duration-1500 ease-[cubic-bezier(0.3,0.8,0.3,1.1)] bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text text-transparent text-6xl sm:text-8xl italic z-10`}
+                } inline-block transition-all duration-1000 ease-[cubic-bezier(0.3,0.8,0.3,1.1)] bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text text-transparent text-6xl sm:text-8xl italic z-10`}
               >
                 Illini Electric Motorsports.{" "}
               </span>
@@ -211,13 +211,16 @@ function Home() {
 
           <div
             ref={bannerRef}
-            className={`${
-              bannerIsVisible
-                ? "translate-y-0 blur-none opacity-100"
-                : "translate-y-30 blur-lg opacity-0"
-            } transition-all duration-1000 flex flex-col mx-auto w-3/4 xl:w-2/3 justify-between my-20`}
+            className="flex flex-col mx-auto w-3/4 xl:w-2/3 justify-between border-x-[0.25px] border-neutral-400/30 py-20 px-10 bg-[#131313]"
           >
-            <div className="">
+            <div
+              ref={bannerRef}
+              className={`${
+                bannerIsVisible
+                  ? "translate-y-0 blur-none opacity-100"
+                  : "translate-y-30 blur-lg opacity-0"
+              } transition-all duration-1000`}
+            >
               <span className="text-white text-2xl font-extralight">
                 Find our alumni here
               </span>
@@ -231,7 +234,7 @@ function Home() {
 
           <div
             ref={offerRef}
-            className={`transition-all duration-1000 flex justify-center my-20 ${
+            className={`transition-all duration-1000 flex justify-center border-[0.25px] border-neutral-400/30 py-20 ${
               offerIsVisible
                 ? "translate-y-0 opacity-100 blur-none"
                 : "translate-y-20 opacity-0 blur-lg"
@@ -310,8 +313,8 @@ function Home() {
                     </CarouselContent>
                     <CarouselPrevious className="cursor-pointer bg-black text-white border-none hover:text-neutral-400 hover:bg-black scale-150  transition duration-300 -left-20" />
                     <CarouselNext className="cursor-pointer bg-black text-white border-none hover:text-neutral-400 hover:bg-black scale-150 transition duration-300 -right-20" />
-                    <div className="absolute xl:opacity-100 opacity-0 right-0 top-0 rotate-180 gradient-left h-full w-[100px] z-10"></div>
-                    <div className="absolute xl:opacity-100 opacity-0 left-0 top-0 gradient-left h-full w-[100px] z-10"></div>
+                    <div className="absolute xl:opacity-100 opacity-0 right-0 top-0 rotate-180 gradient-left-black h-full w-[100px] z-10"></div>
+                    <div className="absolute xl:opacity-100 opacity-0 left-0 top-0 gradient-left-black h-full w-[100px] z-10"></div>
                   </Carousel>
                 </div>
               </div>
@@ -319,18 +322,18 @@ function Home() {
           </div>
 
           <div
-            ref={statsRef}
-            className={`flex flex-col items-center mx-auto transition-all ease-in-out w-3/5 duration-1000 justify-center my-20 ${
-              statsIsVisible
-                ? "translate-y-0 opacity-100 blur-none"
-                : "translate-y-20 opacity-0 blur-lg"
-            }`}
+            className={`flex flex-col items-center mx-auto ease-in-out w-3/4 xl:w-2/3 duration-1000 justify-center border-x-[0.25px] border-neutral-400/30 py-20 px-10 bg-[#131313]`}
           >
-            <div className="flex flex-row w-full justify-start">
+            <div
+              ref={statsRef}
+              className="flex flex-row w-full justify-start transition-all duration-1000"
+            >
               <span
-                className={`${
-                  exiting ? "translate-y-15" : "translate-y-0"
-                } text-neutral-400 text-2xl font-light text-left mb-5 transition-all duration-1000 z-10 `}
+                className={`${exiting ? "translate-y-15" : "translate-y-0"} ${
+                  statsIsVisible
+                    ? "translate-y-0 opacity-100 blur-none"
+                    : "translate-y-20 opacity-0 blur-lg"
+                }} text-neutral-400 text-2xl font-light text-left mb-5 transition-all duration-1000 z-10 `}
               >
                 <span className="">
                   We have students in <br />
@@ -348,7 +351,7 @@ function Home() {
               </span>
             </div>
             <div className="flex flex-col items-center w-full transition-all ease-in-out z-10 duration-1000 justify-center">
-              <div className="flex flex-col text-center border-neutral-400/30 bg-linear-to-b w-full from-neutral-900 from-30% h-[100px] to-[#0f0f0f] px-10 pt-10 pb-60 xl:pb-40 rounded-t-3xl delay-1500 border-x-[0.25px] border-t-[0.25px] border-netural-400/50">
+              <div className="flex flex-col text-center border-neutral-400/30 bg-linear-to-b w-full from-[#0f0f0f] from-30% h-[100px] to-[#131313] px-10 pt-10 pb-60 xl:pb-40 rounded-t-3xl delay-1500 border-x-[0.25px] border-t-[0.25px] border-netural-400/50">
                 <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                   <CountUp end={2000} duration={4000} label="Members" />
                   <CountUp end={20} duration={1500} label="Majors" />

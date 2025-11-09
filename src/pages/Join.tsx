@@ -26,7 +26,7 @@ const Join = () => {
   const mailingVisible = useIsVisible(mailingRef, 0.3);
 
   return (
-    <div className="flex flex-col sm:w-2/3 mx-auto mt-20">
+    <div className="flex flex-col sm:w-2/3 mx-auto my-20">
       <div className="flex flex-col w-full mb-3 items-start">
         <span className="text-white text-7xl  w-fit text-left">
           Discover{" "}

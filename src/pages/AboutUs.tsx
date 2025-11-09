@@ -43,7 +43,7 @@ function AboutUs() {
               summaryIsVisible
                 ? "opacity-100 blur-none translate-y-0"
                 : "opacity-0 blur-lg translate-y-20"
-            } transition-all duration-1500`}
+            } transition-all duration-1000`}
           >
             <div className="flex flex-col">
               <span className="text-white font-[450] text-7xl mb-3">
@@ -156,7 +156,7 @@ function AboutUs() {
                   captainsIsVisible
                     ? "opacity-100 blur-none translate-y-0"
                     : "opacity-0 blur-lg translate-y-30"
-                } transition-all duration-1500 my-5`}
+                } transition-all duration-1000 my-5`}
               >
                 <span className="text-white font-[450] text-5xl">Captains</span>
                 <div className="mt-10 grid grid-cols-2 grid-rows-1">
@@ -180,7 +180,7 @@ function AboutUs() {
                   subteamsIsVisible
                     ? "opacity-100 blur-none translate-y-0"
                     : "opacity-0 blur-lg translate-y-30"
-                } transition-all duration-1500 my-5`}
+                } transition-all duration-1000 my-5`}
               >
                 <span className="text-white font-[450] text-5xl">
                   Subteam Leads
@@ -269,7 +269,7 @@ function AboutUs() {
               historyIsVisible
                 ? "opacity-100 blur-none translate-y-0"
                 : "opacity-0 blur-lg translate-y-20"
-            } transition-all duration-1500`}
+            } transition-all duration-1000`}
           >
             <div>
               <span className="text-white font-[450] text-7xl mb-3">

@@ -8,7 +8,7 @@ const ContentSwitcher = ({ items }: ContentSwitcherProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   return (
-    <div className="flex flex-col rounded-2xl border-[0.25px] border-neutral-400/50 bg-neutral-900">
+    <div className="flex flex-col w-2/3 rounded-2xl border-[0.25px] border-neutral-400/50 bg-neutral-900">
       <div className="flex flex-row justify-around overflow-scroll no-scrollbar bg-neutral-800 p-5 rounded-t-2xl">
         {items.map((item, index) => (
           <span

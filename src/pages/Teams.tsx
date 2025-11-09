@@ -17,12 +17,12 @@ const Teams = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const textIsVisible = useIsVisible(textRef, 0.3);
   return (
-    <div className="flex flex-col justify-center text-center mt-20">
+    <div className="flex flex-col justify-center text-center my-20">
       <div
         ref={textRef}
         className={`${
           textIsVisible ? "opacity-100 " : "opacity-0 translate-y-30 blur-lg"
-        } transition-all duration-1500 flex flex-col justify-center mb-5 mx-10`}
+        } transition-all duration-1000 flex flex-col justify-center mb-5 mx-10`}
       >
         <span className="text-white text-7xl w-fit mx-auto mb-3">
           Our Teams

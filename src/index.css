@@ -43,11 +43,11 @@ body {
 }
 
 .gradient-left {
-  background-image: linear-gradient(90deg, #0f0f0f, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(90deg, #131313, rgba(255, 255, 255, 0));
 }
 
-.gradient-right {
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), #0f0f0f);
+.gradient-left-black {
+  background-image: linear-gradient(90deg, #0f0f0f, rgba(255, 255, 255, 0));
 }
 
 .logo-bg {
