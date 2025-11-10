@@ -1,10 +1,10 @@
 import "../index.css";
 import logo from "../assets/iem-logo.svg";
-import { FaLinkedin, FaInstagram } from "react-icons/fa6";
-import { FiArrowRight, FiMenu, FiX } from "react-icons/fi";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import {FaLinkedin, FaInstagram} from "react-icons/fa6";
+import {FiArrowRight, FiMenu, FiX} from "react-icons/fi";
+import {MdKeyboardArrowDown} from "react-icons/md";
 import DropdownContent from "./DropdownContent";
-import { useState } from "react";
+import {useState} from "react";
 import {
     aboutContent,
     sponsorContent,
@@ -34,7 +34,7 @@ const NavLink = ({
             className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-4 py-1 z-10 w-full cursor-pointer text-white hover:bg-neutral-900"
         >
             <span className="text-2xl">{linkLabel}</span>
-            <MdKeyboardArrowDown className="ml-1 size-5 group-hover:-rotate-180 transition-transform duration-400" />
+            <MdKeyboardArrowDown className="ml-1 size-5 group-hover:-rotate-180 transition-transform duration-400"/>
         </div>
     );
 };
@@ -48,15 +48,18 @@ const Navbar = () => {
     const contents = [aboutContent, sponsorContent, carContent];
 
     return (
-        <nav className="navbar relative z-50 flex flex-row items-center justify-between sticky top-0 px-7 py-5 text-2xl font-light nav-gradient ">
+        <nav
+            className="navbar relative z-50 flex flex-row items-center justify-between sticky top-0 px-7 py-5 text-2xl font-light nav-gradient ">
 
             <a className="flex items-center group z-20" href="/home">
-                <img className="size-[60px] mr-4" src={logo} alt="" />
+                <img className="size-[60px] mr-4" src={logo} alt=""/>
                 <div className="overflow-hidden relative w-fit">
-          <span className="inline-block text-5xl text-white italic font-[1000] transition-transform duration-200 group-hover:translate-y-full ml-2">
+          <span
+              className="inline-block text-5xl text-white italic font-[1000] transition-transform duration-200 group-hover:translate-y-full ml-2">
             IEM.
           </span>
-                    <span className="inline-block text-5xl text-white italic font-[1000] absolute top-0 left-0 transition-transform duration-200 -translate-y-full group-hover:translate-y-0">
+                    <span
+                        className="inline-block text-5xl text-white italic font-[1000] absolute top-0 left-0 transition-transform duration-200 -translate-y-full group-hover:translate-y-0">
             IEM.
           </span>
                 </div>
@@ -107,7 +110,7 @@ const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FaLinkedin className="size-[30px]" />
+                    <FaLinkedin className="size-[30px]"/>
                 </a>
                 <a
                     className="flex flex-row items-center text-white hover:text-neutral-200 transition-colors duration-300 w-fit mx-1"
@@ -115,7 +118,7 @@ const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FaInstagram className="size-[30px]" />
+                    <FaInstagram className="size-[30px]"/>
                 </a>
                 <a
                     className="group relative flex flex-row items-center text-white hover:text-neutral-200 w-fit mx-1"
@@ -124,7 +127,8 @@ const Navbar = () => {
                     rel="noopener noreferrer"
                 >
                     <span className="pr-6 transition-all duration-250">Mailing List</span>
-                    <FiArrowRight className="size-[25px] absolute right-0 group-hover:-rotate-45 origin-center transition-transform duration-250" />
+                    <FiArrowRight
+                        className="size-[25px] absolute right-0 group-hover:-rotate-45 origin-center transition-transform duration-250"/>
                 </a>
             </div>
 
@@ -135,9 +139,9 @@ const Navbar = () => {
                     aria-label="Toggle menu"
                 >
                     {isMobileMenuOpen ? (
-                        <FiX className="size-8" />
+                        <FiX className="size-8"/>
                     ) : (
-                        <FiMenu className="size-8" />
+                        <FiMenu className="size-8"/>
                     )}
                 </button>
             </div>
@@ -165,7 +169,7 @@ const Navbar = () => {
                         Cars
                     </a>
 
-                    <hr className="border-neutral-700 my-2" />
+                    <hr className="border-neutral-700 my-2"/>
 
                     <a
                         className="flex flex-row items-center text-white hover:text-neutral-200 w-fit py-2"
@@ -173,7 +177,7 @@ const Navbar = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <FaLinkedin className="size-6 mr-3" />
+                        <FaLinkedin className="size-6 mr-3"/>
                         <span>LinkedIn</span>
                     </a>
                     <a
@@ -182,7 +186,7 @@ const Navbar = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <FaInstagram className="size-6 mr-3" />
+                        <FaInstagram className="size-6 mr-3"/>
                         <span>Instagram</span>
                     </a>
                     <a
@@ -192,7 +196,7 @@ const Navbar = () => {
                         rel="noopener noreferrer"
                     >
                         <span className="pr-6">Mailing List</span>
-                        <FiArrowRight className="size-6 ml-auto" />
+                        <FiArrowRight className="size-6 ml-auto"/>
                     </a>
                 </div>
             </div>
