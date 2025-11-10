@@ -17,13 +17,14 @@ const backgroundMaterial = new THREE.MeshStandardMaterial({
     roughness: 0.8,
     transparent: true,
     opacity: 0.05,
-    depthWrite: false,
+    depthWrite: true,
     blending: THREE.NormalBlending,
 });
 
 interface CarModelProps {
     highlightedPart: string | null;
     isAutoRotating: boolean;
+    [key: string]: any;
 }
 
 export function CarModel({ highlightedPart, isAutoRotating, ...props }: CarModelProps) {
@@ -45,7 +46,7 @@ export function CarModel({ highlightedPart, isAutoRotating, ...props }: CarModel
     const wingMaterialRef = useRef<THREE.MeshStandardMaterial>(null!);
     const venturiMaterialRef = useRef<THREE.MeshStandardMaterial>(null!);
 
-    const groupPosition: [number, number, number] = [-40, 27, -10];
+    const groupPosition = [-40, 27, -10];
     const rotationSpeed = 20;
 
     useEffect(() => {
@@ -67,14 +68,12 @@ export function CarModel({ highlightedPart, isAutoRotating, ...props }: CarModel
                 duration: 1.0,
                 ease: 'power3.inOut',
                 onComplete: () => {
-                    if (rotationRef.current) {
-                        rotationTween.current = gsap.to(rotationRef.current.rotation, {
-                            z: `+=${Math.PI * 2}`,
-                            duration: rotationSpeed,
-                            ease: 'none',
-                            repeat: -1,
-                        });
-                    }
+                    rotationTween.current = gsap.to(rotationRef.current.rotation, {
+                        z: `+=${Math.PI * 2}`,
+                        duration: rotationSpeed,
+                        ease: 'none',
+                        repeat: -1,
+                    });
                 },
             });
         }
