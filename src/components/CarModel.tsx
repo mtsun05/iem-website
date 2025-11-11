@@ -17,7 +17,7 @@ const backgroundMaterial = new THREE.MeshStandardMaterial({
     roughness: 0.8,
     transparent: true,
     opacity: 0.05,
-    depthWrite: true,
+    depthWrite: false,
     blending: THREE.NormalBlending,
 });
 

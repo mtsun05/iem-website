@@ -8,7 +8,6 @@ import {useState} from "react";
 import {
     aboutContent,
     sponsorContent,
-    carContent,
 } from "@/util/dropdownContent";
 
 interface NavlinkProps {
@@ -45,7 +44,7 @@ const Navbar = () => {
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const contents = [aboutContent, sponsorContent, carContent];
+    const contents = [aboutContent, sponsorContent];
 
     return (
         <nav
@@ -78,12 +77,12 @@ const Navbar = () => {
                     setActiveIndex={setActiveIndex}
                     setContentVisible={setContentVisible}
                 />
-                <NavLink
-                    linkLabel="Cars"
-                    index={2}
-                    setActiveIndex={setActiveIndex}
-                    setContentVisible={setContentVisible}
-                />
+                <a href="/cars">
+                    <div
+                        className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-4 py-1 z-10 w-full cursor-pointer text-white hover:bg-neutral-900">
+                        <span className="text-2xl">Cars</span>
+                    </div>
+                </a>
 
                 <div
                     onMouseEnter={() => setContentVisible(true)}
