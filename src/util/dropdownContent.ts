@@ -3,6 +3,7 @@ import teamicon from "../assets/teams-icon.svg";
 import joinicon from "../assets/join-icon.svg";
 import sponsors from "../assets/sponsors-icon.svg";
 import shake from "../assets/shake.svg";
+import electric from "../assets/electric.svg";
 
 export const aboutContent = {
   labels: ["About Us", "Teams", "Join"],

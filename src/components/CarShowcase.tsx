@@ -7,10 +7,10 @@ import gsap from 'gsap';
 
 const CAMERA_POSITIONS = {
     DEFAULT: { position: [0, -100, 30], target: [0, 0, 0] },
-    DIFFUSER: { position: [-50, 75, -10], target: [-50, 0, 0] },
-    FRONT_SPOILER: { position: [-50, -10, 80], target: [0, -15, 30] },
-    REAR_WING: { position: [-20, -30, 20], target: [-20, 0, 20] },
-    VENTURI: { position: [-10, -100, 50], target: [0, 2, 0] },
+    DIFFUSER: { position: [-35, 75, -10], target: [-35, 0, 0] },
+    FRONT_SPOILER: { position: [25, -50, 20], target: [25, -30, 5] },
+    REAR_WING: { position: [-30, -40, 30], target: [-30, 0, 20] },
+    VENTURI: { position: [-10, -50, 50], target: [0, 0, 0] },
 };
 
 function CameraRig({ highlightedPart }: { highlightedPart: string | null }) {
