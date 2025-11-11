@@ -111,7 +111,7 @@ const Sponsors = () => {
             className="text-2xl italic mb-5"
             text="Blue Level"
           />
-          <SponsorDisplay icons={lithiumIcons} iconSizePx={100} />
+          <SponsorDisplay icons={blueIcons} iconSizePx={100} />
         </div>
       </div>
     </div>

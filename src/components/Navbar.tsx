@@ -5,10 +5,7 @@ import { FiArrowRight, FiMenu, FiX } from "react-icons/fi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import DropdownContent from "./DropdownContent";
 import { useState } from "react";
-import {
-    aboutContent,
-    sponsorContent,
-} from "@/util/dropdownContent";
+import { aboutContent, sponsorContent } from "@/util/dropdownContent";
 
 interface NavlinkProps {
   linkLabel: string;
@@ -45,7 +42,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState("");
 
-    const contents = [aboutContent, sponsorContent];
+  const contents = [aboutContent, sponsorContent];
 
   return (
     <nav className="navbar z-50 flex flex-row items-center justify-between sticky top-0 px-7 py-5 text-2xl font-light bg-[#0f0f0f]/90 backdrop-blur-lg">
@@ -61,25 +58,24 @@ const Navbar = () => {
         </div>
       </a>
 
-            <div className="hidden md:relative md:flex md:flex-row mr-8 text-lg">
-                <NavLink
-                    linkLabel="About"
-                    index={0}
-                    setActiveIndex={setActiveIndex}
-                    setContentVisible={setContentVisible}
-                />
-                <NavLink
-                    linkLabel="Sponsors"
-                    index={1}
-                    setActiveIndex={setActiveIndex}
-                    setContentVisible={setContentVisible}
-                />
-                <a href="/cars">
-                    <div
-                        className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-4 py-1 z-10 w-full cursor-pointer text-white hover:bg-neutral-900">
-                        <span className="text-2xl">Cars</span>
-                    </div>
-                </a>
+      <div className="hidden md:relative md:flex md:flex-row mr-8 text-lg">
+        <NavLink
+          linkLabel="About"
+          index={0}
+          setActiveIndex={setActiveIndex}
+          setContentVisible={setContentVisible}
+        />
+        <NavLink
+          linkLabel="Sponsors"
+          index={1}
+          setActiveIndex={setActiveIndex}
+          setContentVisible={setContentVisible}
+        />
+        <a href="/cars">
+          <div className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-4 py-1 z-10 w-full cursor-pointer text-white hover:bg-neutral-900">
+            <span className="text-xl">Cars</span>
+          </div>
+        </a>
 
         <div
           onMouseEnter={() => setContentVisible(true)}
