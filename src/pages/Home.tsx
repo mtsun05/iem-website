@@ -78,7 +78,7 @@ function Home() {
       <div className="container min-w-screen p-0">
         <div className="min-h-screen flex flex-col justify-center">
           <video
-            className="video relative min-w-screen h-[102vh]"
+            className="video object-cover relative min-w-screen h-[102vh]"
             autoPlay
             loop
             muted
@@ -87,7 +87,7 @@ function Home() {
           </video>
 
           <div className="mid-container -bottom-35 pb-50 h-fit w-full absolute">
-            <div className="flex flex-col items-center text-9xl md:text-9xl text-white/90 font-semibold mx-20">
+            <div className="flex flex-col items-center text-7xl md:text-9xl text-white/90 font-semibold mx-20">
               <span
                 ref={EngineeringRef}
                 className={`${
