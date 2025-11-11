@@ -86,7 +86,7 @@ export default function CarsPage() {
     }, [activePart]);
 
     const plugin = useRef(
-        Autoplay({delay: 5000})
+        Autoplay({delay: 5000, stopOnMouseEnter: true}),
     );
 
     return (
@@ -168,7 +168,6 @@ export default function CarsPage() {
                         opts={{ loop: true, watchDrag: false }}
                         plugins={[plugin.current]}
                         onMouseEnter={plugin.current.stop}
-                        onMouseLeave={plugin.current.play}
                     >
                         <CarouselContent className="flex">
                             {pastCarsData.map((card, index) => (

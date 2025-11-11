@@ -1,9 +1,10 @@
-import React, {Suspense, useEffect, useRef} from 'react';
+import {Suspense, useEffect, useRef} from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei';
 import { EffectComposer, Outline, Selection } from '@react-three/postprocessing';
 import { CarModel } from './CarModel';
 import gsap from 'gsap';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 const CAMERA_POSITIONS = {
     DEFAULT: { position: [0, -100, 30], target: [0, 0, 0] },
@@ -11,25 +12,28 @@ const CAMERA_POSITIONS = {
     FRONT_SPOILER: { position: [25, -50, 20], target: [25, -30, 5] },
     REAR_WING: { position: [-30, -40, 30], target: [-30, 0, 20] },
     VENTURI: { position: [-10, -50, 50], target: [0, 0, 0] },
-};
+} as const;
 
-function CameraRig({ highlightedPart }: { highlightedPart: string | null }) {
+type PartKey = keyof typeof CAMERA_POSITIONS | null;
+
+function CameraRig({ highlightedPart }: { highlightedPart: PartKey }) {
     const { camera, controls } = useThree();
-    const prevHighlightedPart = useRef<string | null>(null);
+    const prevHighlightedPart = useRef<PartKey>(null);
 
     useEffect(() => {
-        if (!controls) return;
+        const typedControls = controls as OrbitControlsImpl;
+
+        if (!typedControls) return;
 
         const cfg =
             highlightedPart && CAMERA_POSITIONS[highlightedPart]
                 ? CAMERA_POSITIONS[highlightedPart]
                 : CAMERA_POSITIONS.DEFAULT;
 
-        const isFocusing = !prevHighlightedPart.current && highlightedPart;
         const animationDelay = 0;
 
         gsap.killTweensOf(camera.position);
-        gsap.killTweensOf(controls.target);
+        gsap.killTweensOf(typedControls.target);
 
         gsap.to(camera.position, {
             duration: 1.8,
@@ -40,7 +44,7 @@ function CameraRig({ highlightedPart }: { highlightedPart: string | null }) {
             delay: animationDelay,
         });
 
-        gsap.to(controls.target, {
+        gsap.to(typedControls.target, {
             duration: 1.8,
             ease: 'power3.inOut',
             x: cfg.target[0],
@@ -49,7 +53,9 @@ function CameraRig({ highlightedPart }: { highlightedPart: string | null }) {
             delay: animationDelay,
 
             onUpdate: () => {
-                if (controls) controls.update();
+                if (controls) {
+                    typedControls.update();
+                }
             },
         });
 
@@ -61,7 +67,7 @@ function CameraRig({ highlightedPart }: { highlightedPart: string | null }) {
 }
 
 interface CarShowcaseProps {
-    highlightedPart: string | null;
+    highlightedPart: PartKey;
     isAutoRotating: boolean;
 }
 
@@ -114,8 +120,8 @@ export function CarShowcase({ highlightedPart, isAutoRotating }: CarShowcaseProp
                     <EffectComposer multisampling={8} autoClear={false}>
                         <Outline
                             blur
-                            visibleEdgeColor="white"
-                            hiddenEdgeColor="white"
+                            visibleEdgeColor={0xffffff}
+                            hiddenEdgeColor={0xffffff}
                             edgeStrength={50}
                             width={2500}
                             xRay={true}
@@ -126,8 +132,6 @@ export function CarShowcase({ highlightedPart, isAutoRotating }: CarShowcaseProp
                         <CarModel
                             highlightedPart={highlightedPart}
                             isAutoRotating={isAutoRotating}
-                            scale={0.8}
-                            position={[0, 0, 0]}
                         />
                     </Suspense>
                 </Selection>
