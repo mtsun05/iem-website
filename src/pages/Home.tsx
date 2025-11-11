@@ -211,7 +211,7 @@ function Home() {
 
           <div
             ref={bannerRef}
-            className="flex flex-col mx-auto w-3/4 xl:w-2/3 justify-between border-x-[0.25px] border-neutral-400/30 py-20 px-10 bg-[#131313]"
+            className="flex flex-col mx-auto w-3/4 xl:w-2/3 justify-between border-x-[0.25px] border-neutral-400/30 py-10 px-10"
           >
             <div
               ref={bannerRef}
@@ -221,14 +221,18 @@ function Home() {
                   : "translate-y-30 blur-lg opacity-0"
               } transition-all duration-1000`}
             >
-              <span className="text-white text-2xl font-extralight">
-                Find our alumni here
-              </span>
-              <CompanyBanner icons={companyIcons} goesLeft />
-              <span className="text-white text-2xl font-extralight">
-                A few of our sponsors
-              </span>
-              <CompanyBanner icons={sponsorIcons} goesLeft />
+              <div className="flex flex-col items-center">
+                <span className="text-neutral-400 text-xl font-extralight">
+                  Driving real outcomes for our engineers
+                </span>
+                <CompanyBanner icons={companyIcons} goesLeft />
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-neutral-400 text-xl font-extralight">
+                  IEM is powered by
+                </span>
+                <CompanyBanner icons={sponsorIcons} goesLeft />
+              </div>
             </div>
           </div>
 
@@ -322,7 +326,7 @@ function Home() {
           </div>
 
           <div
-            className={`flex flex-col items-center mx-auto ease-in-out w-3/4 xl:w-2/3 duration-1000 justify-center border-x-[0.25px] border-neutral-400/30 py-20 px-10 bg-[#131313]`}
+            className={`flex flex-col items-center mx-auto ease-in-out w-3/4 xl:w-2/3 duration-1000 justify-center border-x-[0.25px] border-neutral-400/30 py-20 px-10`}
           >
             <div
               ref={statsRef}
@@ -351,7 +355,7 @@ function Home() {
               </span>
             </div>
             <div className="flex flex-col items-center w-full transition-all ease-in-out z-10 duration-1000 justify-center">
-              <div className="flex flex-col text-center border-neutral-400/30 bg-linear-to-b w-full from-[#0f0f0f] from-30% h-[100px] to-[#131313] px-10 pt-10 pb-60 xl:pb-40 rounded-t-3xl delay-1500 border-x-[0.25px] border-t-[0.25px] border-netural-400/50">
+              <div className="flex flex-col text-center border-neutral-400/30 bg-linear-to-b w-full from-neutral-900 from-30% h-[100px] to-[#0f0f0f] px-10 pt-10 pb-60 xl:pb-40 rounded-t-3xl delay-1500 border-x-[0.25px] border-t-[0.25px] border-netural-400/50">
                 <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                   <CountUp end={2000} duration={4000} label="Members" />
                   <CountUp end={20} duration={1500} label="Majors" />

@@ -12,7 +12,7 @@ const Banner = ({ icons, goesLeft }: BannerProps) => {
         goesLeft ? "left" : "right"
       } banner-wrapper relative rounded-xl flex max-w-screen w-full mx-auto transition-color duration-300`}
     >
-      <div className="absolute gradient-left h-full w-[200px] z-10"></div>
+      <div className="absolute gradient-left-black h-full w-[200px] z-10"></div>
       <div className="wrapper">
         <div className="icons">
           {icons.map(({ icon }) => (
@@ -34,7 +34,7 @@ const Banner = ({ icons, goesLeft }: BannerProps) => {
           ))}
         </div>
       </div>
-      <div className="absolute right-0 rotate-180 gradient-left h-full w-[200px] z-10"></div>
+      <div className="absolute right-0 rotate-180 gradient-left-black h-full w-[200px] z-10"></div>
     </div>
   );
 };

@@ -33,7 +33,7 @@ const NavLink = ({
       onMouseLeave={() => setContentVisible(false)}
       className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-4 py-1 z-10 w-full cursor-pointer text-white hover:bg-neutral-900"
     >
-      <span className="text-2xl">{linkLabel}</span>
+      <span className="text-xl">{linkLabel}</span>
       <MdKeyboardArrowDown className="ml-1 size-5 group-hover:-rotate-180 transition-transform duration-400" />
     </div>
   );
@@ -49,7 +49,7 @@ const Navbar = () => {
   const contents = [aboutContent, sponsorContent, carContent];
 
   return (
-    <nav className="navbar z-50 flex flex-row items-center justify-between sticky top-0 px-7 py-5 text-2xl font-light nav-gradient ">
+    <nav className="navbar z-50 flex flex-row items-center justify-between sticky top-0 px-7 py-5 text-2xl font-light bg-[#0f0f0f]/90 backdrop-blur-lg">
       <a className="flex items-center group z-20" href="/home">
         <img className="size-[60px] mr-4" src={logo} alt="" />
         <div className="overflow-hidden relative w-fit">
@@ -89,7 +89,7 @@ const Navbar = () => {
             contentVisible ? "visible opacity-100" : "invisible opacity-0"
           } transition-opacity duration-300 absolute top-full left-1/2 -translate-x-1/2 pt-2`}
         >
-          <div className="text-white transition-all duration-300 bg-neutral-900 rounded-2xl">
+          <div className="text-white transition-all duration-300 bg-[#0f0f0f]/90 rounded-2xl">
             <DropdownContent
               labels={contents[activeIndex].labels}
               subtitles={contents[activeIndex].subtitles}
@@ -123,8 +123,10 @@ const Navbar = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="pr-6 transition-all duration-250">Mailing List</span>
-          <FiArrowRight className="size-[25px] absolute right-0 group-hover:-rotate-45 origin-center transition-transform duration-250" />
+          <span className="text-xl pr-6 transition-all duration-250">
+            Mailing List
+          </span>
+          <FiArrowRight className="size-5 absolute right-0 group-hover:-rotate-45 origin-center transition-transform duration-250" />
         </a>
       </div>
 

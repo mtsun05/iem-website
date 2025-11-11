@@ -30,6 +30,16 @@ import vigrade from "../assets/company-logos/vigrade.svg";
 import stratasys from "../assets/company-logos/stratasys.svg";
 import renishaw from "../assets/company-logos/renishaw.svg";
 import lzmachine from "../assets/company-logos/lzmachine.svg";
+import izze from "../assets/company-logos/izze.svg";
+import humanetics from "../assets/company-logos/humanetics.svg";
+import APwelding from "../assets/company-logos/APwelding.svg";
+import rpc from "../assets/company-logos/rpc.svg";
+import matlab from "../assets/company-logos/matlab.svg";
+import centriciterations from "../assets/company-logos/centriciterations.svg";
+import mitutoyo from "../assets/company-logos/mitutoyo.svg";
+import michiganscientific from "../assets/company-logos/michiganscientific.svg";
+import sormaz from "../assets/company-logos/sormaz.svg";
+import pparts from "../assets/company-logos/pparts.svg";
 
 export const companyIcons = [
   { icon: apple },
@@ -87,15 +97,18 @@ export const goldIcons = [
   // { icon: spartan },
 ];
 export const orangeIcons = [
-  { icon: apple },
-  { icon: nvidia },
-  { icon: spacex },
-  { icon: ford },
-  { icon: tesla },
+  { icon: rivian },
+  { icon: izze },
+  { icon: humanetics },
   { icon: cat },
-  { icon: pwc },
-  { icon: raytheon },
-  { icon: gm },
+  { icon: APwelding },
+  { icon: rpc },
+  { icon: matlab },
+  { icon: mitutoyo },
+  { icon: michiganscientific },
+  { icon: sormaz },
+  { icon: pparts },
+  { icon: centriciterations },
 ];
 export const blueIcons = [
   { icon: apple },

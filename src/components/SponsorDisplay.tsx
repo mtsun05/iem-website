@@ -12,7 +12,7 @@ const SponsorDisplay = ({ icons, iconSizePx }: SponsorDisplayProps) => {
         return (
           <img
             key={`${icon}-1`}
-            className={`company-icon justify-self-center self-center mx-10 object-contain`}
+            className={`company-icon justify-self-center self-center object-contain`}
             style={{
               width: `${iconSizePx}px`,
             }}

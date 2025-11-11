@@ -70,7 +70,7 @@ body {
 
 .banner-wrapper .wrapper .icons {
   display: flex;
-  animation: swipeRight 17000ms linear infinite;
+  animation: swipeLeft 17000ms linear infinite;
 }
 
 @keyframes swipeRight {

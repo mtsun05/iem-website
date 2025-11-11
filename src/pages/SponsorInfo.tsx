@@ -131,7 +131,7 @@ const SponsorInfo = () => {
             formVisible
               ? "opacity-100 blur-none translate-y-0"
               : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1000 flex flex-col justify-center pb-10 mx-5 bg-[#131313] xl:border-x-[0.25px] border-neutral-400/30 px-23`}
+          } transition-all duration-1000 flex flex-col justify-center pb-10 mx-5 bg- xl:border-x-[0.25px] border-neutral-400/30 px-23`}
         >
           <span className="text-white font-[450] text-7xl w-fit mx-auto pb-3 pt-10">
             Become a Sponsor

@@ -1,5 +1,10 @@
 import SponsorDisplay from "@/components/SponsorDisplay";
-import { goldIcons, lithiumIcons } from "@/util/companyIcons";
+import {
+  goldIcons,
+  lithiumIcons,
+  orangeIcons,
+  blueIcons,
+} from "@/util/companyIcons";
 import ShinyText from "../components/external/ShinyText";
 import { FiArrowRight } from "react-icons/fi";
 import { useRef } from "react";
@@ -59,7 +64,7 @@ const Sponsors = () => {
               className="text-2xl italic mb-5"
               text="Lithium Level"
             />
-            <SponsorDisplay icons={lithiumIcons} iconSizePx={200} />
+            <SponsorDisplay icons={lithiumIcons} iconSizePx={210} />
           </div>
         </div>
         <div className="border-b-[0.25px] border-neutral-400/30">
@@ -91,7 +96,7 @@ const Sponsors = () => {
               className="text-2xl italic mb-5"
               text="Orange Level"
             />
-            <SponsorDisplay icons={lithiumIcons} iconSizePx={100} />
+            <SponsorDisplay icons={orangeIcons} iconSizePx={100} />
           </div>
         </div>
         <div

@@ -36,7 +36,7 @@ function AboutUs() {
   return (
     <>
       <div className="flex justify-center container min-w-screen">
-        <div className="flex flex-col min-h-screen w-2/3">
+        <div className="flex flex-col min-h-screen mx-10 sm:w-2/3">
           <div
             ref={summaryRef}
             className={`transition-all ease-in-out duration-1000 flex mt-20 ${
@@ -46,7 +46,7 @@ function AboutUs() {
             } transition-all duration-1000`}
           >
             <div className="flex flex-col">
-              <span className="text-white font-[450] text-7xl mb-3">
+              <span className="text-white font-[450] text-5xl md:text-7xl mb-3">
                 Empowering the <br />
                 <span className="text-transparent bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text italic">
                   next generation
@@ -185,7 +185,7 @@ function AboutUs() {
                 <span className="text-white font-[450] text-5xl">
                   Subteam Leads
                 </span>
-                <div className="mt-10 w-full grid grid-cols-4 grid-rows-1">
+                <div className="mt-10 w-full grid grid-cols-2 lg:grid-cols-4 grid-rows-1">
                   <LeadPic
                     name="Derin Sozen"
                     title="Infrastructure"
