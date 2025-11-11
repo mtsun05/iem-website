@@ -2,7 +2,7 @@ import "../index.css";
 import logo from "../assets/iem-logo.svg";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 import { FiArrowRight, FiMenu, FiX } from "react-icons/fi";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
 import DropdownContent from "./DropdownContent";
 import { useState } from "react";
 import { aboutContent, sponsorContent } from "@/util/dropdownContent";
@@ -95,7 +95,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="hidden lg:flex flex-row justify-between">
+      <div className="hidden md:flex flex-row justify-between">
         <a
           className="flex flex-row items-center text-white hover:text-neutral-200 transition-colors duration-300 w-fit mx-1"
           href="https://linkedin.com/company/illini-electric-motorsports"
@@ -125,7 +125,7 @@ const Navbar = () => {
         </a>
       </div>
 
-      <div className="flex items-center lg:hidden z-20">
+      <div className="flex items-center md:hidden z-20">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="text-white focus:outline-none"
@@ -142,7 +142,7 @@ const Navbar = () => {
       <div
         className={`
           absolute top-full left-0 right-0 bg-neutral-900 shadow-xl
-          lg:hidden 
+          md:hidden 
           transition-all duration-300 ease-in-out
           ${
             isMobileMenuOpen
@@ -161,28 +161,37 @@ const Navbar = () => {
             className="text-white py-2 rounded-lg px-3"
           >
             <div className="flex flex-row items-center">
-              <span>About</span>
-              <MdKeyboardArrowDown
+              <MdKeyboardArrowRight
                 className={`${
-                  activeDropdown == "about" ? "rotate-180" : "rotate-0"
-                } transition-all duration-300 ml-2`}
+                  activeDropdown == "about" ? "rotate-90" : "rotate-0"
+                } transition-all duration-300 -ml-1 mr-2`}
               />
+              <span>About</span>
             </div>
             <div
               className={`${
                 activeDropdown == "about"
                   ? "flex translate-y-0"
                   : "hidden -translate-y-4"
-              } transition-all duration-300 flex-col ml-5 gap-3 mt-3`}
+              } transition-all duration-300 flex-col gap-3 mt-3`}
             >
-              <a className="text-neutral-400" href="/about">
-                About
+              <a className="flex flex-col" href="/about">
+                <span className="text-white text-xl">About us</span>
+                <span className="text-neutral-400 text-base">
+                  Find out more about our organization and leads
+                </span>
               </a>
-              <a className="text-neutral-400" href="/teams">
-                Teams
+              <a className="flex flex-col" href="/teams">
+                <span className="text-white text-xl">Teams</span>
+                <span className="text-neutral-400 text-base">
+                  Discover our subteams, find where you belong
+                </span>
               </a>
-              <a className="text-neutral-400" href="/join">
-                Join
+              <a className="flex flex-col" href="/join">
+                <span className="text-white text-xl">Join</span>
+                <span className="text-neutral-400 text-base">
+                  Get all the information you need to join
+                </span>
               </a>
             </div>
           </div>
@@ -195,25 +204,31 @@ const Navbar = () => {
             className="text-white py-2 rounded-lg px-3"
           >
             <div className="flex flex-row items-center">
-              <span>Sponsors</span>
-              <MdKeyboardArrowDown
+              <MdKeyboardArrowRight
                 className={`${
-                  activeDropdown == "sponsors" ? "rotate-180" : "rotate-0"
-                } transition-all duration-300 ml-2`}
+                  activeDropdown == "sponsors" ? "rotate-90" : "rotate-0"
+                } transition-all duration-300 -ml-1 mr-2`}
               />
+              <span>Sponsors</span>
             </div>
             <div
               className={`${
                 activeDropdown == "sponsors"
                   ? "flex translate-y-0"
                   : "hidden translate-y-10"
-              } transition-all duration-300 flex-col ml-5 gap-3 mt-3`}
+              } transition-all duration-300 flex-col gap-3 mt-3`}
             >
-              <a className="text-neutral-400" href="/sponsors">
-                Our Sponsors
+              <a className="flex flex-col" href="/sponsors">
+                <span className="text-white text-xl">Our Sponsors</span>
+                <span className="text-neutral-400 text-base">
+                  Browse a list of our generous sponsors
+                </span>
               </a>
-              <a className="text-neutral-400" href="/sponsor-into">
-                Become a Sponsor
+              <a className="flex flex-col" href="/sponsor-into">
+                <span className="text-white text-xl">Become a Sponsor</span>
+                <span className="text-neutral-400 text-base">
+                  The how and why behind a partnership with IEM
+                </span>
               </a>
             </div>
           </div>
@@ -226,26 +241,7 @@ const Navbar = () => {
             className="text-white py-2 rounded-lg px-3"
           >
             <div className="flex flex-row items-center">
-              <span>Cars</span>
-              <MdKeyboardArrowDown
-                className={`${
-                  activeDropdown == "cars" ? "rotate-180" : "rotate-0"
-                } transition-all duration-300 ml-2`}
-              />
-            </div>
-            <div
-              className={`${
-                activeDropdown == "cars"
-                  ? "flex translate-y-0"
-                  : "hidden -translate-y-4"
-              } transition-all duration-300 flex-col ml-5 gap-3 mt-3`}
-            >
-              <a className="text-neutral-400" href="/cars#electric">
-                Electric
-              </a>
-              <a className="text-neutral-400" href="/cars#combustion">
-                Combustion
-              </a>
+              <a href="/cars">Cars</a>
             </div>
           </div>
 
