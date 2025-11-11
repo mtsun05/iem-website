@@ -2,7 +2,8 @@ import { useEffect, useState, type RefObject } from "react";
 
 export const useIsVisible = (
   ref: RefObject<Element | null>,
-  threshold: number
+  threshold: number,
+  once: boolean = true
 ) => {
   const [isIntersecting, setIntersecting] = useState(false);
 
@@ -12,8 +13,12 @@ export const useIsVisible = (
       threshold: threshold,
     };
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !isIntersecting) {
-        setIntersecting(true);
+      if (once) {
+        if (entry.isIntersecting && !isIntersecting) {
+          setIntersecting(true);
+        }
+      } else {
+        setIntersecting(entry.isIntersecting);
       }
     }, options);
 
