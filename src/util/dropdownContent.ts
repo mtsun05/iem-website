@@ -3,7 +3,6 @@ import teamicon from "../assets/teams-icon.svg";
 import joinicon from "../assets/join-icon.svg";
 import sponsors from "../assets/sponsors-icon.svg";
 import shake from "../assets/shake.svg";
-import gas from "../assets/gas.svg";
 import electric from "../assets/electric.svg";
 
 export const aboutContent = {
@@ -25,11 +24,4 @@ export const sponsorContent = {
   ],
   links: ["/sponsors", "/sponsor-info"],
   content: [sponsors, shake],
-};
-
-export const carContent = {
-  labels: ["Electric", "Combustion"],
-  subtitles: ["Our electric vehicles", "Our gas-powered vehicles"],
-  links: ["/cars#electric", "/cars#combustion"],
-  content: [electric, gas],
 };
