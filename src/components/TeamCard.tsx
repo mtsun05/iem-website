@@ -7,19 +7,10 @@ interface TeamCardProps {
   children: React.ReactNode;
   title: string;
   icon: IconType;
-  // iconColor: string;
-  subteamNames: string[];
-  subteamBodies?: string[];
+  teamData: { name: string; body: string }[];
 }
 
-const TeamCard = ({
-  children,
-  title,
-  subteamNames,
-  icon: Icon,
-  // iconColor,
-  subteamBodies,
-}: TeamCardProps) => {
+const TeamCard = ({ children, title, icon: Icon, teamData }: TeamCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const cardIsVisible = useIsVisible(cardRef, 0.3);
 
@@ -46,18 +37,8 @@ const TeamCard = ({
       </div>
       <span className="bg-slate-300/50 my-2 h-[0.25px] w-full"></span>
       <div className="flex flex-col">
-        {subteamNames.map((name, index) => {
-          return (
-            <AccordionItem
-              key={name}
-              label={name}
-              body={
-                subteamBodies && index < subteamBodies.length
-                  ? subteamBodies[index]
-                  : ""
-              }
-            />
-          );
+        {teamData.map(({ name, body }) => {
+          return <AccordionItem key={name} label={name} body={body} />;
         })}
       </div>
     </div>

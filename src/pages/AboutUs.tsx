@@ -20,6 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel.tsx";
+import HistoryTimeline from "@/components/HistoryTimeline.tsx";
 
 function AboutUs() {
   const summaryRef = useRef<HTMLDivElement>(null);
@@ -39,11 +40,11 @@ function AboutUs() {
         <div className="flex flex-col min-h-screen mx-10 sm:w-2/3">
           <div
             ref={summaryRef}
-            className={`transition-all ease-in-out duration-1000 flex mt-20 ${
+            className={`transition-all duration-1000 flex my-20 ${
               summaryIsVisible
                 ? "opacity-100 blur-none translate-y-0"
                 : "opacity-0 blur-lg translate-y-20"
-            } transition-all duration-1000`}
+            }`}
           >
             <div className="flex flex-col">
               <span className="text-white font-[450] text-5xl md:text-7xl mb-3">
@@ -148,7 +149,21 @@ function AboutUs() {
             </div>
           </div>
 
-          <div className="transition-all duration-1000 flex mt-20">
+          <div
+            ref={historyRef}
+            className={`transition-all ease-in-out duration-1000 flex flex-col my-20 ${
+              historyIsVisible
+                ? "opacity-100 blur-none translate-y-0"
+                : "opacity-0 blur-lg translate-y-20"
+            } transition-all duration-1000`}
+          >
+            <span className="text-white text-center font-[450] text-5xl mb-3">
+              Our History
+            </span>
+            <HistoryTimeline />
+          </div>
+
+          <div className="transition-all duration-1000 flex mb-20">
             <div className="flex flex-col w-full">
               <div
                 ref={captainsRef}
@@ -156,9 +171,11 @@ function AboutUs() {
                   captainsIsVisible
                     ? "opacity-100 blur-none translate-y-0"
                     : "opacity-0 blur-lg translate-y-30"
-                } transition-all duration-1000 my-5`}
+                } flex flex-col transition-all duration-1000 my-5`}
               >
-                <span className="text-white font-[450] text-5xl">Captains</span>
+                <span className="text-white font-[450] text-5xl text-center">
+                  Captains
+                </span>
                 <div className="mt-10 grid grid-cols-2 grid-rows-1">
                   <LeadPic
                     name="Ethan Peng"
@@ -180,9 +197,9 @@ function AboutUs() {
                   subteamsIsVisible
                     ? "opacity-100 blur-none translate-y-0"
                     : "opacity-0 blur-lg translate-y-30"
-                } transition-all duration-1000 my-5`}
+                } flex flex-col transition-all duration-1000 my-5`}
               >
-                <span className="text-white font-[450] text-5xl">
+                <span className="text-white font-[450] text-5xl text-center">
                   Subteam Leads
                 </span>
                 <div className="mt-10 w-full grid grid-cols-2 lg:grid-cols-4 grid-rows-1">
@@ -261,20 +278,6 @@ function AboutUs() {
                   />
                 </div>
               </div>
-            </div>
-          </div>
-          <div
-            ref={historyRef}
-            className={`transition-all ease-in-out duration-1000 flex mt-20 ${
-              historyIsVisible
-                ? "opacity-100 blur-none translate-y-0"
-                : "opacity-0 blur-lg translate-y-20"
-            } transition-all duration-1000`}
-          >
-            <div>
-              <span className="text-white font-[450] text-7xl mb-3">
-                Our History
-              </span>
             </div>
           </div>
         </div>

@@ -5,12 +5,7 @@ import { BiSolidZap } from "react-icons/bi";
 import { FaGear } from "react-icons/fa6";
 import { FaChartBar } from "react-icons/fa";
 
-import {
-  ElectricalNames,
-  MechNames,
-  LogNames,
-  ElectricalBodies,
-} from "../util/teamData";
+import { electrical, mechanical, logistical } from "../util/teamData";
 import { useIsVisible } from "../util/visibilityDetector";
 
 const Teams = () => {
@@ -29,35 +24,19 @@ const Teams = () => {
         </span>
       </div>
       <div className="flex flex-col w-full lg:flex-row lg:justify-center">
-        <TeamCard
-          title="Electrical"
-          icon={BiSolidZap}
-          // iconColor="#d6c242"
-          subteamNames={ElectricalNames}
-          subteamBodies={ElectricalBodies}
-        >
+        <TeamCard title="Electrical" icon={BiSolidZap} teamData={electrical}>
           Our electrical subteams design, test, and implement our high and low
           voltage systems. From hardware and software, all the way to sensors
           and analysis. You will get the opportunity to learn industry standard
           design and manufacturing techniques.
         </TeamCard>
-        <TeamCard
-          title="Mechanical"
-          icon={FaGear}
-          // iconColor="#737373ff"
-          subteamNames={MechNames}
-        >
+        <TeamCard title="Mechanical" icon={FaGear} teamData={mechanical}>
           Our mechanical subteams design, validate, and manufacture the physical
           components of our vehicle. You will get the opportunity to learn
           industry standard design and validation methods, as well as use
           industry specific CAD, FEA, and simulation software.
         </TeamCard>
-        <TeamCard
-          title="Logistical"
-          icon={FaChartBar}
-          // iconColor="#4a5ee0"
-          subteamNames={LogNames}
-        >
+        <TeamCard title="Logistical" icon={FaChartBar} teamData={logistical}>
           Our logistical subteams handle the business, media, and infrastructure
           aspects of our team. They build relationships, manage funds, and
           create infrastructure. You will get the opportunity to work on a large
