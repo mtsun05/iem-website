@@ -90,7 +90,6 @@ const Navbar = () => {
               subtitles={contents[activeIndex].subtitles}
               links={contents[activeIndex].links}
               content={contents[activeIndex].content}
-              visible={contentVisible}
             />
           </div>
         </div>

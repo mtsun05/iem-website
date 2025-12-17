@@ -1,13 +1,12 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface DropdownContentProps {
   labels: string[];
   subtitles: string[];
   links: string[];
   content: string[];
-  visible: boolean;
 }
 
 gsap.registerPlugin(useGSAP);
@@ -17,45 +16,65 @@ const DropdownContent = ({
   subtitles,
   links,
   content,
-  visible,
 }: DropdownContentProps) => {
   const [contentIndex, setContentIndex] = useState<number>(0);
+  const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    console.log(visible);
-    let linkTL = gsap.timeline();
+  useGSAP(
+    () => {
+      let linkTL = gsap.timeline();
+      let imgTL = gsap.timeline();
 
-    linkTL.fromTo(
-      ".link",
-      {
-        opacity: 0,
-        y: -10,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-      },
-      0
-    );
-  }, [links]);
+      imgTL.fromTo(
+        ".img",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+        0
+      );
 
-  useGSAP(() => {
-    let imgTL = gsap.timeline();
-    imgTL.fromTo(
-      ".img",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-      },
-      0
-    );
-  }, [contentIndex, links]);
+      linkTL.fromTo(
+        ".link",
+        {
+          opacity: 0,
+          y: -10,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+        },
+        0
+      );
+    },
+    { dependencies: [links], revertOnUpdate: true }
+  );
+
+  useGSAP(
+    () => {
+      let imgTL = gsap.timeline();
+      imgTL.fromTo(
+        ".img",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+        0
+      );
+    },
+    { dependencies: [contentIndex], scope: container, revertOnUpdate: true }
+  );
 
   return (
-    <div className="flex flex-row text-white p-3 rounded-4xl w-[700px] h-59 backdrop-blur-lg">
+    <div
+      ref={container}
+      className="flex flex-row text-white p-3 rounded-4xl w-[700px] h-59 backdrop-blur-lg"
+    >
       <div className="w-1/2 flex flex-col mr-3">
         {labels.map((label, index) => (
           <a
