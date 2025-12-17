@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, OrbitControls } from "@react-three/drei";
 import { OrbitControls as OrbitControlsType } from "three-stdlib";
@@ -9,6 +9,9 @@ import {
 } from "@react-three/postprocessing";
 import { CarModel } from "./CarModel";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 const CAMERA_POSITIONS: Record<string, CameraPosiionValue> = {
   DEFAULT: { position: [0, -100, 30], target: [0, 0, 0] },
@@ -30,43 +33,46 @@ function CameraRig({
   const orbitControls = controls as OrbitControlsType | undefined;
   const prevHighlightedPart = useRef<string | null>(null);
 
-  useEffect(() => {
-    if (!orbitControls) return;
+  useGSAP(
+    () => {
+      if (!orbitControls) return;
 
-    const cfg =
-      highlightedPart && CAMERA_POSITIONS[highlightedPart]
-        ? CAMERA_POSITIONS[highlightedPart]
-        : CAMERA_POSITIONS.DEFAULT;
+      const cfg =
+        highlightedPart && CAMERA_POSITIONS[highlightedPart]
+          ? CAMERA_POSITIONS[highlightedPart]
+          : CAMERA_POSITIONS.DEFAULT;
 
-    const animationDelay = 0;
+      const animationDelay = 0;
 
-    gsap.killTweensOf(camera.position);
-    gsap.killTweensOf(orbitControls.target);
+      gsap.killTweensOf(camera.position);
+      gsap.killTweensOf(orbitControls.target);
 
-    gsap.to(camera.position, {
-      duration: 1.8,
-      ease: "power3.inOut",
-      x: cfg.position[0],
-      y: cfg.position[1],
-      z: cfg.position[2],
-      delay: animationDelay,
-    });
+      gsap.to(camera.position, {
+        duration: 1.8,
+        ease: "power3.inOut",
+        x: cfg.position[0],
+        y: cfg.position[1],
+        z: cfg.position[2],
+        delay: animationDelay,
+      });
 
-    gsap.to(orbitControls.target, {
-      duration: 1.8,
-      ease: "power3.inOut",
-      x: cfg.target[0],
-      y: cfg.target[1],
-      z: cfg.target[2],
-      delay: animationDelay,
+      gsap.to(orbitControls.target, {
+        duration: 1.8,
+        ease: "power3.inOut",
+        x: cfg.target[0],
+        y: cfg.target[1],
+        z: cfg.target[2],
+        delay: animationDelay,
 
-      onUpdate: () => {
-        if (controls) orbitControls.update();
-      },
-    });
+        onUpdate: () => {
+          if (controls) orbitControls.update();
+        },
+      });
 
-    prevHighlightedPart.current = highlightedPart;
-  }, [highlightedPart, camera, orbitControls]);
+      prevHighlightedPart.current = highlightedPart;
+    },
+    { dependencies: [highlightedPart, camera, orbitControls] }
+  );
 
   return null;
 }

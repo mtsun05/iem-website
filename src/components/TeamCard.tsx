@@ -25,12 +25,12 @@ const TeamCard = ({ children, title, icon: Icon, teamData }: TeamCardProps) => {
     >
       <div className="flex flex-col h-fit mt-3">
         <span className="flex flex-row items-baseline text-5xl mt-3 w-fit h-fit">
-          <span className="pb-3 bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text text-transparent italic">
+          <span className="pb-3 pr-1 bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text text-transparent italic">
             {title}
           </span>
           <Icon
             size={33}
-            className="mx-5 text-white drop-shadow-xl drop-shadow-white/0 group-hover:drop-shadow-white/70 transition-all duration-500"
+            className="mx-3 text-white drop-shadow-xl drop-shadow-white/0 group-hover:drop-shadow-white/70 transition-all duration-500"
           />
         </span>
         <span className="font-light text-neutral-400">{children}</span>

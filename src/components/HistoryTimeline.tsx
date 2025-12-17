@@ -1,6 +1,7 @@
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 interface TimelineEventProps {
   year: string;
@@ -10,6 +11,7 @@ interface TimelineEventProps {
 }
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 const TimelineEvent = ({ year, event, desc, index }: TimelineEventProps) => {
   const eventRef = useRef<HTMLDivElement>(null);
@@ -58,21 +60,18 @@ const HistoryTimeline = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const timeline = timelineRef.current;
 
     if (timeline) {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: timeline,
-          start: "top 70%",
+          start: "top 60%",
           end: "+=2500",
-          // scrub: 1,
-          // pin: ".container",
-          // pinSpacing: "margin",
-        },
-        onComplete: () => {
-          tl.kill();
+          scrub: 1,
+          pin: ".container",
+          pinSpacing: "margin",
         },
       });
 
@@ -100,8 +99,8 @@ const HistoryTimeline = () => {
           {
             x: 0,
             opacity: 1,
-            duration: 1,
-            ease: "back.out",
+            duration: 0.5,
+            ease: "power4.out",
           },
           entryTime
         )
@@ -133,7 +132,7 @@ const HistoryTimeline = () => {
               duration: 1,
               ease: "back.out",
             },
-            9 - timeOffset
+            8.5 - timeOffset
           );
 
           position += (width - 60) / (events.length - 1);
@@ -141,10 +140,7 @@ const HistoryTimeline = () => {
         }
       }
     }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    ScrollTrigger.refresh(true);
   }, []);
 
   return (

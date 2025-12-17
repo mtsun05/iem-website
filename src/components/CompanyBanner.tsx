@@ -2,19 +2,19 @@ interface BannerProps {
   icons: {
     icon: string;
   }[];
-  goesLeft: boolean;
+  goesLeft?: boolean;
 }
 
-const Banner = ({ icons, goesLeft }: BannerProps) => {
+const Banner = ({ icons, goesLeft = false }: BannerProps) => {
   return (
     <div
       className={`${
-        goesLeft ? "left" : "right"
-      } banner-wrapper relative rounded-xl flex max-w-screen w-full mx-auto transition-color duration-300`}
+        goesLeft ? "swipeLeft" : "swipeRight"
+      } banner-wrapper relative rounded-xl flex max-w-screen w-full mt-5 mb-10 mx-auto transition-color duration-300`}
     >
       <div className="absolute gradient-left-black h-full w-[200px] z-10"></div>
-      <div className="wrapper">
-        <div className="icons">
+      <div className={`${goesLeft ? "swipeLeft" : "swipeRight"} wrapper py-3`}>
+        <div className={`${goesLeft ? "swipeLeft" : "swipeRight"} icons`}>
           {icons.map(({ icon }) => (
             <img
               key={`${icon}-1`}
@@ -23,7 +23,7 @@ const Banner = ({ icons, goesLeft }: BannerProps) => {
             />
           ))}
         </div>
-        <div className="icons">
+        <div className={`${goesLeft ? "swipeLeft" : "swipeRight"} icons`}>
           {icons.map(({ icon }) => (
             <img
               key={`${icon}-2`}

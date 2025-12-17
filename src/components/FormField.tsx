@@ -36,7 +36,7 @@ const FormField: React.FC<FormFieldProps> = ({
           value={value}
           onChange={onChange}
           required={required}
-          className="w-full px-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition duration-200 h-38 resize-none"
+          className="w-full px-4 py-3 bg-neutral-800 border border-neutral-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-white/50 transition duration-200 h-38 resize-none"
           placeholder={`Enter your ${label.toLowerCase()}...`}
         />
       </div>
@@ -59,7 +59,7 @@ const FormField: React.FC<FormFieldProps> = ({
             value={value}
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white transition duration-200 appearance-none"
+            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-800 rounded-lg text-white focus:outline-none focus:ring focus:ring-white/50 transition duration-200 appearance-none"
           >
             <option value="" disabled>
               Select a {label.toLowerCase()}...
@@ -99,7 +99,7 @@ const FormField: React.FC<FormFieldProps> = ({
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full px-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition duration-200"
+        className="w-full px-4 py-3 bg-neutral-800 border border-neutral-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-white/50 transition duration-200"
         placeholder={`Enter your ${label.toLowerCase()}...`}
       />
     </div>

@@ -93,7 +93,7 @@ export default function CarsPage() {
   const plugin = useRef(Autoplay({ delay: 5000 }));
 
   return (
-    <main className="bg-neutral-900 text-white">
+    <main className="bg-neutral-900 text-white pt-25">
       <div className="h-[calc(100vh-10rem)] w-screen bg-neutral-900 text-white overflow-hidden relative font-sans">
         <div ref={carRef} className="absolute inset-0 z-0">
           <CarShowcase

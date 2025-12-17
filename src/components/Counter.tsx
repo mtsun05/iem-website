@@ -52,18 +52,14 @@ const CountUp = ({ end, duration = 2000, label }: CountUpProps) => {
   }, [isVisible, end, duration]);
 
   return (
-    <div ref={countRef} className="my-5">
+    <div ref={countRef} className="flex flex-col items-start">
       <span
-        className={`${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-        } transition-all duration-1000 text-3xl lg:text-5xl text-left font-semibold text-white mb-2 flex flex-col items-center`}
+        className={`transition-all duration-1000 text-2xl lg:text-4xl flex flex-col items-center`}
       >
         {count}
         {count == end ? "+" : ""}
-        <span className="text-base lg:text-xl font-light text-neutral-400">
-          {label}
-        </span>
       </span>
+      <span className="text-base font-light text-neutral-300">{label}</span>
     </div>
   );
 };

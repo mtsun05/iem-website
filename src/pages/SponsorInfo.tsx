@@ -103,7 +103,7 @@ const SponsorInfo = () => {
   ];
 
   return (
-    <div className="flex justify-center min-w-screen container">
+    <div className="flex justify-center min-w-screen container pt-25">
       <div className="flex flex-col items-center min-h-screen">
         <div
           ref={switcherRef}
@@ -111,7 +111,7 @@ const SponsorInfo = () => {
             switcherVisible
               ? "opacity-100 blur-none"
               : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1000 flex flex-col mx-auto justify-center items-center text-center mt-20 pb-20 text-white p-4 md:p-8 xl:border-b-[0.25px] border-neutral-400/30`}
+          } transition-all duration-1000 flex flex-col mx-auto justify-center items-center text-center mt-20 pb-50 text-white p-4 md:p-8`}
         >
           <div className="flex flex-col mb-10">
             <span className="text-white text-left font-[450] text-7xl w-fit">
@@ -131,21 +131,23 @@ const SponsorInfo = () => {
             formVisible
               ? "opacity-100 blur-none translate-y-0"
               : "opacity-0 blur-lg translate-y-30"
-          } transition-all duration-1000 flex flex-col justify-center pb-10 mx-5 bg- xl:border-x-[0.25px] border-neutral-400/30 px-23`}
+          } transition-all duration-1000 flex flex-col w-2/3 justify-center my-20`}
         >
-          <span className="text-white font-[450] text-7xl w-fit mx-auto pb-3 pt-10">
-            Become a Sponsor
-          </span>
-          <p className="text-xl font-light text-neutral-400">
-            We're looking for partners to help us build the future of mobility.
-            Fill out the form below to get in touch!
-          </p>
+          <div className="flex flex-col justify-center text-center mb-10">
+            <span className="text-white font-[450] text-7xl w-fit mx-auto pb-3 pt-10">
+              Become a Sponsor
+            </span>
+            <p className="text-xl font-light text-neutral-400">
+              We're looking for partners to help us build the future of
+              mobility. Fill out the form below to get in touch!
+            </p>
+          </div>
           <div
             className={`${
               formVisible
                 ? "opacity-100 blur-none translate-y-0"
                 : "opacity-0 blur-lg translate-y-30"
-            } transition-all duration-1000 w-full p-8 md:p-10`}
+            } transition-all duration-1000 w-full p-8 md:p-10 bg-neutral-900 py-10 px-23 border-[0.25px] border-neutral-400/30 rounded-3xl`}
           >
             <form onSubmit={handleSubmit}>
               <div className="flex flex-row">
@@ -196,7 +198,7 @@ const SponsorInfo = () => {
               <div className="mt-8">
                 <button
                   className="
-                    group items-center justify-center flex flex-row text-white text-xl bg-black/50 border-[0.25px] border-slate-300/50 hover:border-white/60 hover:pr-8 cursor-pointer text-nowrap rounded-xl w-full px-4 py-3 transition-all duration-300 hover:shadow-lg shadow-white/20 gap-1"
+                    group items-center justify-center flex flex-row text-white text-xl bg-black/50 border-[0.25px] border-neutral-400/30 hover:border-white/40 hover:pr-8 cursor-pointer text-nowrap rounded-xl w-full px-4 py-3 transition-all duration-300 gap-1"
                 >
                   <div className="relative w-fit">
                     <span className="font-light">Submit Inquiry</span>

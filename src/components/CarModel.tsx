@@ -1,8 +1,11 @@
-import { useEffect, useRef, useMemo, useLayoutEffect } from "react";
+import { useRef, useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Select } from "@react-three/postprocessing";
 import * as THREE from "three";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 const darkMaterialProps = {
   color: "#1a1a1a",
@@ -53,31 +56,34 @@ export function CarModel({
   const groupPosition: [number, number, number] = [-40, 27, -10];
   const rotationSpeed = 20;
 
-  useEffect(() => {
-    if (!rotationRef.current) return;
-    if (rotationTween.current) rotationTween.current.kill();
+  useGSAP(
+    () => {
+      if (!rotationRef.current) return;
+      if (rotationTween.current) rotationTween.current.kill();
 
-    if (highlightedPart) {
-      preFocusRotation.current = rotationRef.current.rotation.z;
-      const targetZ =
-        Math.round(preFocusRotation.current / (Math.PI * 2)) * (Math.PI * 2);
+      if (highlightedPart) {
+        preFocusRotation.current = rotationRef.current.rotation.z;
+        const targetZ =
+          Math.round(preFocusRotation.current / (Math.PI * 2)) * (Math.PI * 2);
 
-      rotationTween.current = gsap.to(rotationRef.current.rotation, {
-        z: targetZ,
-        duration: 1.0,
-        ease: "power3.inOut",
-      });
-    } else if (isAutoRotating) {
-      if (rotationRef.current) {
         rotationTween.current = gsap.to(rotationRef.current.rotation, {
-          z: `+=${Math.PI * 2}`,
-          duration: rotationSpeed,
-          ease: "none",
-          repeat: -1,
+          z: targetZ,
+          duration: 1.0,
+          ease: "power3.inOut",
         });
+      } else if (isAutoRotating) {
+        if (rotationRef.current) {
+          rotationTween.current = gsap.to(rotationRef.current.rotation, {
+            z: `+=${Math.PI * 2}`,
+            duration: rotationSpeed,
+            ease: "none",
+            repeat: -1,
+          });
+        }
       }
-    }
-  }, [isAutoRotating, highlightedPart]);
+    },
+    { scope: rotationRef, dependencies: [isAutoRotating, highlightedPart] }
+  );
 
   const isAnythingHighlighted = highlightedPart !== null;
   const getMaterialProps = (partName: string) => {
@@ -106,47 +112,62 @@ export function CarModel({
     [highlightedPart]
   );
 
-  useLayoutEffect(() => {
-    if (diffuserMaterialRef.current) {
-      diffuserMaterialRef.current.transparent = diffuserProps.transparent;
-      diffuserMaterialRef.current.opacity = diffuserProps.opacity;
-      diffuserMaterialRef.current.depthWrite = diffuserProps.depthWrite;
-    }
-  }, [diffuserProps]);
+  useGSAP(
+    () => {
+      if (diffuserMaterialRef.current) {
+        diffuserMaterialRef.current.transparent = diffuserProps.transparent;
+        diffuserMaterialRef.current.opacity = diffuserProps.opacity;
+        diffuserMaterialRef.current.depthWrite = diffuserProps.depthWrite;
+      }
+    },
+    { scope: diffuserMaterialRef, dependencies: [diffuserProps] }
+  );
 
-  useLayoutEffect(() => {
-    if (spoilerMaterialRef.current) {
-      spoilerMaterialRef.current.transparent = spoilerProps.transparent;
-      spoilerMaterialRef.current.opacity = spoilerProps.opacity;
-      spoilerMaterialRef.current.depthWrite = spoilerProps.depthWrite;
-    }
-  }, [spoilerProps]);
+  useGSAP(
+    () => {
+      if (spoilerMaterialRef.current) {
+        spoilerMaterialRef.current.transparent = spoilerProps.transparent;
+        spoilerMaterialRef.current.opacity = spoilerProps.opacity;
+        spoilerMaterialRef.current.depthWrite = spoilerProps.depthWrite;
+      }
+    },
+    { scope: spoilerMaterialRef, dependencies: [spoilerProps] }
+  );
 
-  useLayoutEffect(() => {
-    if (wingMaterialRef.current) {
-      wingMaterialRef.current.transparent = wingProps.transparent;
-      wingMaterialRef.current.opacity = wingProps.opacity;
-      wingMaterialRef.current.depthWrite = wingProps.depthWrite;
-    }
-  }, [wingProps]);
+  useGSAP(
+    () => {
+      if (wingMaterialRef.current) {
+        wingMaterialRef.current.transparent = wingProps.transparent;
+        wingMaterialRef.current.opacity = wingProps.opacity;
+        wingMaterialRef.current.depthWrite = wingProps.depthWrite;
+      }
+    },
+    { scope: wingMaterialRef, dependencies: [wingProps] }
+  );
 
-  useLayoutEffect(() => {
-    if (venturiMaterialRef.current) {
-      venturiMaterialRef.current.transparent = venturiProps.transparent;
-      venturiMaterialRef.current.opacity = venturiProps.opacity;
-      venturiMaterialRef.current.depthWrite = venturiProps.depthWrite;
-    }
-  }, [venturiProps]);
+  useGSAP(
+    () => {
+      if (venturiMaterialRef.current) {
+        venturiMaterialRef.current.transparent = venturiProps.transparent;
+        venturiMaterialRef.current.opacity = venturiProps.opacity;
+        venturiMaterialRef.current.depthWrite = venturiProps.depthWrite;
+      }
+    },
+    { scope: venturiMaterialRef, dependencies: [venturiProps] }
+  );
 
-  useEffect(() => {
-    if (backgroundRef.current) {
-      backgroundRef.current.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          (child as THREE.Mesh).material = backgroundMaterial.clone();
-        }
-      });
-    }
-  }, [nodes]);
+  useGSAP(
+    () => {
+      if (backgroundRef.current) {
+        backgroundRef.current.traverse((child) => {
+          if ((child as THREE.Mesh).isMesh) {
+            (child as THREE.Mesh).material = backgroundMaterial.clone();
+          }
+        });
+      }
+    },
+    { scope: backgroundRef, dependencies: [nodes] }
+  );
 
   return (
     <group ref={rotationRef} {...props}>

@@ -11,17 +11,18 @@ const PresentationInfo = () => {
       )}
 
       <img
-        className={`w-full h-[450px] object-cover rounded-2xl mx-2 mb-5 ${
+        className={`img w-full h-[450px] object-cover rounded-2xl mx-2 mb-5 ${
           imageLoaded ? "block" : "hidden"
         }`}
         src={pic}
         alt=""
         onLoad={() => setImageLoaded(true)}
-        loading="eager"
       />
       <div className="flex flex-col ml-2">
-        <span className="text-white text-5xl mb-3">Go on full display.</span>
-        <span className="text-white font-light">
+        <span className="info-header text-white text-5xl mb-3">
+          Go on full display.
+        </span>
+        <span className="info-body text-white font-light">
           Partnering with IEM offers premium brand visibility. Show off your
           company's contributions at the most prestigious collegiate engineering
           competition in the world. Logos can be placed on the vehicle, our

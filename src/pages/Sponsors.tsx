@@ -23,7 +23,7 @@ const Sponsors = () => {
   const blueVisible = useIsVisible(blue, 0.3);
 
   return (
-    <div className="flex justify-center container min-w-screen">
+    <div className="flex justify-center container min-w-screen pt-25">
       <div className="flex flex-col min-h-screen">
         <div
           ref={header}
@@ -34,7 +34,7 @@ const Sponsors = () => {
           } transition-all duration-1000 mt-20 border-b-[0.25px] border-neutral-400/30 px-40 pb-20`}
         >
           <span className="text-center text-7xl text-white mb-3">
-            <span className="text-transparent bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text italic">
+            <span className="pr-2 text-transparent bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text italic">
               Our sponsors
             </span>{" "}
             <br /> make what we do possible.

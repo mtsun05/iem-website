@@ -12,7 +12,7 @@ const Teams = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const textIsVisible = useIsVisible(textRef, 0.3);
   return (
-    <div className="flex flex-col justify-center text-center my-20">
+    <div className="flex flex-col justify-center text-center py-45">
       <div
         ref={textRef}
         className={`${

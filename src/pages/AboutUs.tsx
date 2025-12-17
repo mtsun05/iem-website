@@ -21,6 +21,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel.tsx";
 import HistoryTimeline from "@/components/HistoryTimeline.tsx";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function AboutUs() {
   const summaryRef = useRef<HTMLDivElement>(null);
@@ -29,14 +34,59 @@ function AboutUs() {
   const captainsRef = useRef<HTMLDivElement>(null);
   const captainsIsVisible = useIsVisible(captainsRef, 0.2);
 
-  const subteamsRef = useRef<HTMLDivElement>(null);
-  const subteamsIsVisible = useIsVisible(subteamsRef, 0.2);
-
   const historyRef = useRef<HTMLDivElement>(null);
   const historyIsVisible = useIsVisible(historyRef, 0.2);
+
+  const subteamsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (captainsIsVisible) {
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: subteamsRef.current,
+            start: "top 70%",
+          },
+        });
+
+        tl.fromTo(
+          ".lead-pic",
+          {
+            opacity: 0,
+            y: 30,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: {
+              amount: 1.5,
+            },
+          },
+          0
+        );
+
+        tl.fromTo(
+          subteamsRef.current,
+          {
+            opacity: 0,
+            y: 30,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: {
+              amount: 1,
+            },
+          },
+          0
+        );
+      }
+    },
+    { scope: subteamsRef, dependencies: [captainsIsVisible] }
+  );
   return (
     <>
-      <div className="flex justify-center container min-w-screen">
+      <div className="flex justify-center container pt-25 min-w-screen">
         <div className="flex flex-col min-h-screen mx-10 sm:w-2/3">
           <div
             ref={summaryRef}
@@ -163,15 +213,15 @@ function AboutUs() {
             <HistoryTimeline />
           </div>
 
-          <div className="transition-all duration-1000 flex mb-20">
+          <div className="flex mb-20">
             <div className="flex flex-col w-full">
               <div
                 ref={captainsRef}
                 className={`${
                   captainsIsVisible
-                    ? "opacity-100 blur-none translate-y-0"
-                    : "opacity-0 blur-lg translate-y-30"
-                } flex flex-col transition-all duration-1000 my-5`}
+                    ? "opacity-100 translate-y-0 blur-none"
+                    : "opacity-0 translate-y-30 blur-lg"
+                } transition-all duration-1000 flex flex-col my-5`}
               >
                 <span className="text-white font-[450] text-5xl text-center">
                   Captains
@@ -193,11 +243,7 @@ function AboutUs() {
               </div>
               <div
                 ref={subteamsRef}
-                className={`${
-                  subteamsIsVisible
-                    ? "opacity-100 blur-none translate-y-0"
-                    : "opacity-0 blur-lg translate-y-30"
-                } flex flex-col transition-all duration-1000 my-5`}
+                className={`flex flex-col transition-all duration-1000 my-5`}
               >
                 <span className="text-white font-[450] text-5xl text-center">
                   Subteam Leads

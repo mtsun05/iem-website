@@ -1,21 +1,137 @@
-AWSTemplateFormatVersion: version date
+AWSTemplateFormatVersion: 2010-09-09
 
-Description: String
+Description: CloudFormation stack for deploying the IEM website. Includes an S3 bucket to store assets; S3 bucket to store logs; CloudFront distribution for CDN and better performance; CF OAC for security; Route53 for DNS.
 
-Metadata: template metadata
-
-Parameters: set of parameters
-
-Rules: set of rules
-
-Mappings: set of mappings
-
-Conditions: set of conditions
-
-Transform: set of transforms
+Parameters:
+  DomainName:
+    Type: String
+    Default: illinielectricmotorsports.com
+    Description: The root domain name for the website
+  ACMCertificateARN:
+    Type: String
+    Description: >
+      The ARN of a validated ACM certificate (must be in us-east-1) that matches 
+      the domain name
 
 Resources:
-  S3Bucket:
+  # S3 BUCKETS
+  MainBucket:
     Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Ref DomainName
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: false
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LoggingBucket
+        LogFilePrefix: "website-logs/"
 
-Outputs: set of outputs
+  MainBucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    DependsOn: CloudFrontDistribution
+    Properties:
+      Bucket: !Ref MainBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: "AllowCloudFrontOAC"
+            Action: "s3:GetObject"
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Resource: !Join
+              - ""
+              - - "arn:aws:s3:::"
+                - !Ref MainBucket
+                - "/*"
+            Condition:
+              StringEquals:
+                "AWS:SourceArn": !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+
+  LoggingBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: LogDeliveryWrite
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  CloudFrontDistribution:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      DistributionConfig:
+        Aliases: !Ref DomainName
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt MainBucket.RegionalDomainName
+            OriginAccessControlId: !Ref CloudFrontOAC
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - "GET"
+            - "HEAD"
+          CachedMethods:
+            - "GET"
+            - "HEAD"
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+
+        ViewerCertificate:
+          AcmCertificateArn: !Ref ACMCertificateARN
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2018
+
+        Enabled: true
+        DefaultRootObject: "index.html"
+        PriceClass: PriceClass_100
+
+  CloudFrontOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "OAC-for-${DomainName}"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # ROUTE 53
+  WebsiteHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref DomainName
+
+  WebsiteDNSRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref WebsiteHostedZone
+      RecordSets:
+        - Name: !Ref DomainName
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2
+            DNSName: !GetAtt CloudFrontDistribution.DomainName
+
+Outputs:
+  WebsiteURL:
+    Value: !Sub "https://${DomainName}"
+
+  CloudFrontDomain:
+    Value: !GetAtt CloudFrontDistribution.DomainName

@@ -1,5 +1,5 @@
 import { useIsVisible } from "../util/visibilityDetector.ts";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import ButtonLink from "../components/ButtonLink.tsx";
 import video from "../assets/IEM-video-final.mp4";
@@ -14,6 +14,10 @@ import { FaUserTie } from "react-icons/fa6";
 import { FaToolbox } from "react-icons/fa";
 import { RiUserCommunityLine } from "react-icons/ri";
 import { GrGrow } from "react-icons/gr";
+import { IoPeopleSharp } from "react-icons/io5";
+import { ImBooks } from "react-icons/im";
+import { FaUserGraduate } from "react-icons/fa";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 import {
   Carousel,
@@ -22,10 +26,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 function Home() {
-  // const historyRef = useRef<HTMLDivElement>(null);
-  // // const historyIsVisible = useIsVisible(historyRef);
   const EngineeringRef = useRef<HTMLSpanElement>(null);
   const EngineeringVisible = useIsVisible(EngineeringRef, 0.2);
 
@@ -57,7 +65,7 @@ function Home() {
   const [majorSelection, setMajorSelection] = useState<string>(majors[0]);
   const [exiting, setExiting] = useState<boolean>(false);
 
-  useEffect(() => {
+  useGSAP(() => {
     const intervalId = setInterval(() => {
       setExiting(true);
       setTimeout(() => {
@@ -73,10 +81,33 @@ function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
+  useGSAP(
+    () => {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".count-container",
+          start: "top 80%",
+        },
+      });
+
+      tl.fromTo(
+        ".count-card",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          stagger: 0.2,
+        }
+      );
+    },
+    { scope: ".count-container", dependencies: [] }
+  );
+
   return (
     <>
-      <div className="container min-w-screen p-0">
-        <div className="min-h-screen flex flex-col justify-center">
+      <div className="container min-w-screen">
+        <div className="min-h-screen flex flex-col items-center">
           <video
             className="video object-cover relative min-w-screen h-[102vh]"
             autoPlay
@@ -86,7 +117,7 @@ function Home() {
             <source src={video} type="video/mp4" />
           </video>
 
-          <div className="mid-container -bottom-35 pb-50 h-fit w-full absolute">
+          <div className="mid-container -bottom-20 pb-50 h-fit w-full absolute">
             <div className="flex flex-col items-center text-7xl md:text-9xl text-white/90 font-semibold mx-20">
               <span
                 ref={EngineeringRef}
@@ -123,36 +154,31 @@ function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center sm:items-start transition-all duration-1000 border-y-[0.25px] border-neutral-400/30 py-20 w-fit">
+          <div className="flex flex-col justify-center transition-all duration-1000 py-20 w-5/6 xl:w-3/4">
             <span
               ref={WelcomeSpanRef}
               className={`${
                 WelcomeSpanVisible
                   ? "translate-y-0 opacity-100 blur-none"
                   : "translate-y-30 opacity-0 blur-lg"
-              } transition-all duration-1000 text-neutral-400 xl:w-fit text-left text-4xl sm:text-6xl mb-5 md:mx-60`}
+              } transition-all duration-1000 text-neutral-400 overflow-hidden text-left text-4xl mb-5`}
             >
               <span className="font-light">
                 Welcome to <br />
               </span>
-              <span
-                className={`${
-                  WelcomeSpanVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-100 opacity-0"
-                } inline-block transition-all duration-1000 ease-[cubic-bezier(0.3,0.8,0.3,1.1)] bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text text-transparent text-6xl sm:text-8xl italic z-10`}
-              >
-                Illini Electric Motorsports.{" "}
+              <span className="transition-all duration-1000 delay-1000 ease-out inline-block bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text text-transparent text-6xl sm:text-8xl z-10">
+                Illini Electric Motorsports.
               </span>
             </span>
+
             <div
               className={`${
                 WelcomeSpanVisible
                   ? "opacity-100 blur-none translate-y-0"
                   : "opacity-0 blur-lg translate-y-30"
-              } transition-all duration-1000 delay-500 flex flex-col xl:flex-row items-center justify-center mx-10 md:mx-20`}
+              } transition-all duration-1000 delay-500 flex flex-col xl:flex-row gap-8 items-between justify-center`}
             >
-              <div className="landing-card items-center flex flex-col md:flex-row xl:flex-col w-full md:w-2/3 xl:w-1/4 border-[0.25px] border-neutral-400/30 bg-neutral-900 p-5 rounded-2xl mx-5 mt-5 hover:-translate-y-2 transition-transform duration-500">
+              <div className="landing-card items-center flex flex-col md:flex-row xl:flex-col w-1/3 border-[0.25px] border-neutral-400/30 bg-neutral-900 p-5 rounded-2xl hover:-translate-y-2 transition-transform duration-500">
                 <img
                   className="w-9/10 md:w-1/2 xl:h-[220px] xl:w-[400px] border-[0.25px] border-white/50 rounded-lg object-cover xl:mb-3"
                   src={landing1}
@@ -171,7 +197,7 @@ function Home() {
                   </span>
                 </div>
               </div>
-              <div className="landing-card items-center flex flex-col md:flex-row xl:flex-col w-full md:w-2/3 xl:w-1/4 border-[0.25px] border-neutral-400/30 bg-neutral-900 p-5 rounded-2xl mx-5 mt-5 hover:-translate-y-2 transition-transform duration-500">
+              <div className="landing-card items-center flex flex-col md:flex-row xl:flex-col w-1/3 border-[0.25px] border-neutral-400/30 bg-neutral-900 p-5 rounded-2xl hover:-translate-y-2 transition-transform duration-500">
                 <img
                   className="w-9/10 md:w-1/2 xl:h-[220px] xl:w-[400px] border-[0.25px] border-white/50 rounded-lg object-cover mb-5"
                   src={landing2}
@@ -189,7 +215,7 @@ function Home() {
                   </span>
                 </div>
               </div>
-              <div className="landing-card items-center flex flex-col md:flex-row xl:flex-col w-full md:w-2/3 xl:w-1/4 border-[0.25px] border-neutral-400/30 bg-neutral-900 p-5 rounded-2xl mx-5 mt-5 hover:-translate-y-2 transition-transform duration-500">
+              <div className="landing-card items-center flex flex-col md:flex-row xl:flex-col w-1/3 border-[0.25px] border-neutral-400/30 bg-neutral-900 p-5 rounded-2xl hover:-translate-y-2 transition-transform duration-500">
                 <img
                   className="w-9/10 md:w-1/2 xl:h-[220px] xl:w-[400px] border-[0.25px] border-white/50 rounded-lg object-cover mb-5"
                   src={team_pic}
@@ -211,7 +237,7 @@ function Home() {
 
           <div
             ref={bannerRef}
-            className="flex flex-col mx-auto w-3/4 xl:w-2/3 justify-between border-x-[0.25px] border-neutral-400/30 py-10 px-10"
+            className="flex flex-col mx-auto w-3/4 justify-between px-15"
           >
             <div
               ref={bannerRef}
@@ -221,123 +247,124 @@ function Home() {
                   : "translate-y-30 blur-lg opacity-0"
               } transition-all duration-1000`}
             >
-              <div className="flex flex-col items-center">
-                <span className="text-neutral-400 text-xl font-extralight">
+              <div className="flex flex-col">
+                <span className="text-white italic text-xl font-extralight">
                   Driving real outcomes for our engineers
                 </span>
                 <CompanyBanner icons={companyIcons} goesLeft />
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-neutral-400 text-xl font-extralight">
+              <div className="flex flex-col">
+                <span className="text-white italic text-xl font-extralight">
                   IEM is powered by
                 </span>
-                <CompanyBanner icons={sponsorIcons} goesLeft />
+                <CompanyBanner icons={sponsorIcons} />
               </div>
             </div>
           </div>
 
           <div
             ref={offerRef}
-            className={`transition-all duration-1000 flex justify-center border-[0.25px] border-neutral-400/30 py-20 ${
+            className={`transition-all duration-1000 flex flex-col w-3/4 mx-auto py-20 ${
               offerIsVisible
                 ? "translate-y-0 opacity-100 blur-none"
                 : "translate-y-20 opacity-0 blur-lg"
             }`}
           >
-            <div className="flex flex-col p-10 rounded-lg w-full items-center justify-center">
-              <span className="text-6xl text-white mb-8">Level up with</span>
-              <div className="flex flex-col mx-15 w-5/6 xl:w-3/5">
-                <div className="flex flex-col">
-                  <Carousel className="relative mx-10" opts={{ loop: true }}>
-                    <CarouselContent className="-ml-10 py-10">
-                      <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
-                        <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
-                          <div className="flex justify-between items-center mb-5">
-                            <span className="text-white text-2xl">
-                              Company Events
-                            </span>
-                            <FaUserTie className="text-white size-[25px]" />
-                          </div>
-                          <span className="text-neutral-400 text-base font-extralight">
-                            We host networking events with companies like John
-                            Deere, Rivian, Boeing, GM, SpaceX, and others. Build
-                            your network and learn about these fantastic
-                            companies!
+            <span className="text-7xl w-fit text-white mb-8">
+              Maximize <br />
+              your experience.
+            </span>
+            <div className="flex flex-col mx-15">
+              <div className="flex flex-col">
+                <Carousel className="relative mx-10" opts={{ loop: true }}>
+                  <CarouselContent className="-ml-10 py-10">
+                    <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
+                      <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
+                        <div className="flex justify-between items-center mb-5">
+                          <span className="text-white text-2xl">
+                            Company Events
                           </span>
+                          <FaUserTie className="text-white size-[25px]" />
                         </div>
-                      </CarouselItem>
-                      <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
-                        <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
-                          <div className="flex justify-between items-center mb-5">
-                            <span className="text-white text-2xl">
-                              Constant Growth Opportunities
-                            </span>
-                            <GrGrow className="text-green-500 size-[25px]" />
-                          </div>
-                          <span className="text-neutral-400 text-base font-extralight">
-                            We are always on the lookout for things to improve
-                            within our projects. There is always something to
-                            work on, whether you are a complete beginner or a
-                            seasoned expert!
+                        <span className="text-neutral-400 text-base font-extralight">
+                          We host networking events with companies like John
+                          Deere, Rivian, Boeing, GM, SpaceX, and others. Build
+                          your network and learn about these fantastic
+                          companies!
+                        </span>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
+                      <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
+                        <div className="flex justify-between items-center mb-5">
+                          <span className="text-white text-2xl">
+                            Constant Growth Opportunities
                           </span>
+                          <GrGrow className="text-green-500 size-[25px]" />
                         </div>
-                      </CarouselItem>
-                      <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
-                        <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
-                          <div className="flex justify-between items-center mb-5">
-                            <span className="text-white text-2xl">
-                              Hands-on Experience
-                            </span>
-                            <FaToolbox className="text-orange-400 size-[25px]" />
-                          </div>
-                          <span className="text-neutral-400 text-base font-extralight">
-                            We offer the opportunity to design, prototype, and
-                            build with industry-standard tools. Sharpen your
-                            skillset with tools like CAD (PTC Creo), GitLab,
-                            Docker, Matlab, and others.
+                        <span className="text-neutral-400 text-base font-extralight">
+                          We are always on the lookout for things to improve
+                          within our projects. There is always something to work
+                          on, whether you are a complete beginner or a seasoned
+                          expert!
+                        </span>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
+                      <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
+                        <div className="flex justify-between items-center mb-5">
+                          <span className="text-white text-2xl">
+                            Hands-on Experience
                           </span>
+                          <FaToolbox className="text-orange-400 size-[25px]" />
                         </div>
-                      </CarouselItem>
-                      <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
-                        <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
-                          <div className="flex justify-between items-center mb-5">
-                            <span className="text-white text-2xl">
-                              Strong and Experienced Network
-                            </span>
-                            <RiUserCommunityLine className="text-blue-300 size-[25px]" />
-                          </div>
-                          <span className="text-neutral-400 text-base font-extralight">
-                            Our project leads are very experienced and talented
-                            people, and always willing to help. Connect to learn
-                            more about their experiences, engineering,
-                            recruiting, and tools.
+                        <span className="text-neutral-400 text-base font-extralight">
+                          We offer the opportunity to design, prototype, and
+                          build with industry-standard tools. Sharpen your
+                          skillset with tools like CAD (PTC Creo), GitLab,
+                          Docker, Matlab, and others.
+                        </span>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem className="flex justify-center md:basis-3/5 pl-10">
+                      <div className="flex flex-col border-[0.25px] border-neutral-400/30 rounded-2xl bg-neutral-900 p-5 ">
+                        <div className="flex justify-between items-center mb-5">
+                          <span className="text-white text-2xl">
+                            Strong and Experienced Network
                           </span>
+                          <RiUserCommunityLine className="text-blue-300 size-[25px]" />
                         </div>
-                      </CarouselItem>
-                    </CarouselContent>
-                    <CarouselPrevious className="cursor-pointer bg-black text-white border-none hover:text-neutral-400 hover:bg-black scale-150  transition duration-300 -left-20" />
-                    <CarouselNext className="cursor-pointer bg-black text-white border-none hover:text-neutral-400 hover:bg-black scale-150 transition duration-300 -right-20" />
-                    <div className="absolute xl:opacity-100 opacity-0 right-0 top-0 rotate-180 gradient-left-black h-full w-[100px] z-10"></div>
-                    <div className="absolute xl:opacity-100 opacity-0 left-0 top-0 gradient-left-black h-full w-[100px] z-10"></div>
-                  </Carousel>
-                </div>
+                        <span className="text-neutral-400 text-base font-extralight">
+                          Our project leads are very experienced and talented
+                          people, and always willing to help. Connect to learn
+                          more about their experiences, engineering, recruiting,
+                          and tools.
+                        </span>
+                      </div>
+                    </CarouselItem>
+                  </CarouselContent>
+                  <CarouselPrevious className="cursor-pointer bg-black text-white border-none hover:text-neutral-400 hover:bg-black scale-150  transition duration-300 -left-20" />
+                  <CarouselNext className="cursor-pointer bg-black text-white border-none hover:text-neutral-400 hover:bg-black scale-150 transition duration-300 -right-20" />
+                  <div className="absolute xl:opacity-100 opacity-0 right-0 top-0 rotate-180 gradient-left-black h-full w-[100px] z-10"></div>
+                  <div className="absolute xl:opacity-100 opacity-0 left-0 top-0 gradient-left-black h-full w-[100px] z-10"></div>
+                </Carousel>
               </div>
             </div>
           </div>
 
           <div
-            className={`flex flex-col items-center mx-auto ease-in-out w-3/4 xl:w-2/3 duration-1000 justify-center border-x-[0.25px] border-neutral-400/30 py-20 px-10`}
+            className={`flex flex-col items-center mx-auto ease-in-out w-5/6 xl:w-3/4 duration-1000 justify-center my-20`}
           >
             <div
               ref={statsRef}
-              className="flex flex-row w-full justify-start transition-all duration-1000"
+              className="flex flex-col w-full justify-start transition-all duration-1000 pt-20 pb-15 px-5 md:px-15 bg-neutral-900 rounded-3xl border-[0.25px] border-neutral-400/30"
             >
               <span
-                className={`${exiting ? "translate-y-15" : "translate-y-0"} ${
+                className={`${
                   statsIsVisible
                     ? "translate-y-0 opacity-100 blur-none"
                     : "translate-y-20 opacity-0 blur-lg"
-                }} text-neutral-400 text-2xl font-light text-left mb-5 transition-all duration-1000 z-10 `}
+                }} text-neutral-400 text-2xl font-light text-left mb-10 transition-all duration-1000 z-10 `}
               >
                 <span className="">
                   We have students in <br />
@@ -348,32 +375,40 @@ function Home() {
                     exiting
                       ? "opacity-0 translate-y-4 blur-lg"
                       : "opacity-100 translate-y-0 blur-none"
-                  }  text-transparent text-6xl sm:text-[85px] bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text transition-all duration-1000 pb-5 inline-block italic`}
+                  }  text-transparent text-6xl sm:text-[85px] bg-linear-to-r from-[#2c5191] to-[#FA6300] bg-clip-text transition-all duration-1000 pb-5 inline-block italic w-full`}
                 >
                   {majorSelection}
                 </span>
               </span>
-            </div>
-            <div className="flex flex-col items-center w-full transition-all ease-in-out z-10 duration-1000 justify-center">
-              <div className="flex flex-col text-center border-neutral-400/30 bg-linear-to-b w-full from-neutral-900 from-30% h-[100px] to-[#0f0f0f] px-10 pt-10 pb-60 xl:pb-40 rounded-t-3xl delay-1500 border-x-[0.25px] border-t-[0.25px] border-netural-400/50">
-                <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="count-container grid grid-cols-2 gap-4 text-center w-full text-white">
+                <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-800 rounded-2xl py-5 transition-color duration-300">
+                  <IoPeopleSharp className="size-[4em]" />
                   <CountUp end={2000} duration={4000} label="Members" />
+                </div>
+                <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-800 rounded-2xl py-5 transition-color duration-300">
+                  <ImBooks className="size-[4em]" />
                   <CountUp end={20} duration={1500} label="Majors" />
+                </div>
+                <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-800 rounded-2xl py-5 transition-color duration-300">
+                  <FaUserGraduate className="size-[4em]" />
                   <CountUp end={1000} duration={3000} label="Alumni" />
+                </div>
+                <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-800 rounded-2xl py-5 transition-color duration-300">
+                  <FaGlobeAmericas className="size-[4em]" />
                   <CountUp end={4} duration={800} label="Continents" />
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-full my-10">
-              <div className="flex flex-col xl:flex-row justify-between items-center">
-                <span className="text-4xl text-white font-light">
+            <div className="flex flex-col w-full mt-20">
+              <div className="flex flex-col justify-between gap-5 items-center">
+                <span className="text-5xl text-white text-center font-light">
                   No experience required.
                 </span>
                 <div className="flex flex-row">
                   <ButtonLink marginRight path="/teams">
-                    Explore our Teams
+                    Our Teams
                   </ButtonLink>
-                  <ButtonLink path="/join">Discover how to Join</ButtonLink>
+                  <ButtonLink path="/join">Join Us</ButtonLink>
                 </div>
               </div>
             </div>

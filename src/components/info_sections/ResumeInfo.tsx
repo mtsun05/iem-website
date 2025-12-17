@@ -11,19 +11,18 @@ const PresentationInfo = () => {
       )}
 
       <img
-        className={`w-full h-[450px] object-cover rounded-2xl mx-2 mb-5 ${
+        className={`img w-full h-[450px] object-cover rounded-2xl mx-2 mb-5 ${
           imageLoaded ? "block" : "hidden"
         }`}
         src={pic}
         alt=""
         onLoad={() => setImageLoaded(true)}
-        loading="eager"
       />
       <div className="flex flex-col ml-2">
-        <span className="text-white text-5xl mb-3">
+        <span className="info-header text-white text-5xl mb-3">
           Access our elite talent.
         </span>
-        <span className="text-white font-light">
+        <span className="info-body text-white font-light">
           When partnered with IEM, you're given access to our team resume book.
           Our members routinely work with industry-standard tools and specialize
           in various fields, including electrical engineering, mechanical

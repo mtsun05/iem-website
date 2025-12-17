@@ -11,17 +11,18 @@ const PresentationInfo = () => {
       )}
 
       <img
-        className={`w-full h-[450px] object-cover rounded-2xl mx-2 mb-5 ${
+        className={`img w-full h-[450px] object-cover rounded-2xl mx-2 mb-5 ${
           imageLoaded ? "block" : "hidden"
         }`}
         src={pic}
         alt=""
         onLoad={() => setImageLoaded(true)}
-        loading="eager"
       />
       <div className="flex flex-col mx-2">
-        <span className="text-white text-5xl mb-3">Reach the future.</span>
-        <span className="text-white font-light">
+        <span className="info-header text-white text-5xl mb-3">
+          Reach the future.
+        </span>
+        <span className="info-body text-white font-light">
           Connect with our talented members through company presentations.
           Events we've had in the past include car shows from Rivian, tech talks
           from Tesla, recruiting events from Blue Origin and John Deere, just to
