@@ -7,29 +7,24 @@ interface BannerProps {
 
 const Banner = ({ icons, goesLeft = false }: BannerProps) => {
   return (
-    <div
-      className={`${
-        goesLeft ? "swipeLeft" : "swipeRight"
-      } banner-wrapper relative rounded-xl flex max-w-screen w-full mt-5 mb-10 mx-auto transition-color duration-300`}
-    >
+    <div className="banner-wrapper rounded-xl flex max-w-screen w-full mx-auto transition-color duration-300">
       <div className="absolute gradient-left-black h-full w-[200px] z-10"></div>
-      <div className={`${goesLeft ? "swipeLeft" : "swipeRight"} wrapper py-3`}>
-        <div className={`${goesLeft ? "swipeLeft" : "swipeRight"} icons`}>
+      <div className="wrapper flex py-5">
+        <div className="icons flex items-center">
           {icons.map(({ icon }) => (
             <img
               key={`${icon}-1`}
-              className="company-icon shrink-0 w-[50px] mx-10 object-contain "
+              className="company-icon shrink-0 size-18 mx-10 object-contain"
               src={icon}
             />
           ))}
         </div>
-        <div className={`${goesLeft ? "swipeLeft" : "swipeRight"} icons`}>
+        <div className="icons flex items-center">
           {icons.map(({ icon }) => (
             <img
               key={`${icon}-2`}
-              className="company-icon shrink-0 w-[50px] mx-10 object-contain "
+              className="company-icon shrink-0 size-18 mx-10 object-contain"
               src={icon}
-              alt=""
             />
           ))}
         </div>

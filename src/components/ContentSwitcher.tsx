@@ -26,8 +26,8 @@ const ContentSwitcher = ({ items }: ContentSwitcherProps) => {
         y: offsetTop,
         width: offsetWidth,
         height: offsetHeight,
-        duration: 0.5,
-        ease: "power2.in",
+        duration: 0.3,
+        ease: "back.out(0.3)",
       });
     }
 
