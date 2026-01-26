@@ -36,21 +36,17 @@ const DropdownContent = ({
         0
       );
 
-      linkTL.fromTo(
+      linkTL.from(
         ".link",
         {
           opacity: 0,
           y: -10,
-        },
-        {
-          opacity: 1,
-          y: 0,
           stagger: 0.1,
         },
         0
       );
     },
-    { dependencies: [links], revertOnUpdate: true }
+    { dependencies: [links], scope: container, revertOnUpdate: true }
   );
 
   useGSAP(
@@ -74,12 +70,13 @@ const DropdownContent = ({
     <div
       ref={container}
       className="flex flex-row text-white p-3 rounded-4xl w-[700px] h-59 backdrop-blur-lg"
+      onMouseLeave={() => setContentIndex(0)}
     >
       <div className="w-1/2 flex flex-col mr-3">
         {labels.map((label, index) => (
           <a
             href={links[index]}
-            className="link flex flex-col my-1 p-2 rounded-lg opacity-0 hover:bg-neutral-700/60"
+            className="link flex flex-col my-1 p-2 rounded-lg hover:bg-neutral-700/60"
             onMouseEnter={() => setContentIndex(index)}
           >
             <span className="text-white text-lg">{label}</span>

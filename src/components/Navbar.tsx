@@ -27,7 +27,7 @@ const NavLink = ({
         setContentVisible(true);
       }}
       onMouseLeave={() => setContentVisible(false)}
-      className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-3 py-1 z-10 w-full cursor-pointer text-white hover:bg-neutral-900 hover:ring ring-white/30"
+      className="flex group items-center group-hover:text-neutral-300 rounded-full transition-colors duration-300 px-3 py-1 w-full cursor-pointer text-white hover:bg-neutral-900 hover:ring ring-white/30"
     >
       <span className="text-xl">{linkLabel}</span>
       <MdKeyboardArrowDown className="ml-1 size-5 group-hover:-rotate-180 transition-transform duration-400" />
@@ -81,7 +81,9 @@ const Navbar = () => {
           onMouseEnter={() => setContentVisible(true)}
           onMouseLeave={() => setContentVisible(false)}
           className={`${
-            contentVisible ? "visible opacity-100" : "invisible opacity-0"
+            contentVisible
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
           } transition-opacity duration-300 absolute top-full left-1/2 -translate-x-1/2 pt-2`}
         >
           <div className="text-white transition-all duration-300 bg-[#0f0f0f]/90 rounded-2xl drop-shadow-xl drop-shadow-black/50">
@@ -141,13 +143,13 @@ const Navbar = () => {
 
       <div
         className={`
-          absolute top-full left-0 right-0 bg-neutral-900 shadow-xl
+          absolute top-0 left-0 right-0 pt-30 bg-neutral-900 shadow-xl
           md:hidden 
-          transition-all duration-300 ease-in-out
+          transition-all duration-500 ease-in-out
           ${
             isMobileMenuOpen
-              ? "opacity-100 visible translate-y-0"
-              : "opacity-0 invisible -translate-y-4"
+              ? "opacity-100 visible max-h-250"
+              : "opacity-0 invisible max-h-0"
           }
         `}
       >
@@ -171,24 +173,33 @@ const Navbar = () => {
             <div
               className={`${
                 activeDropdown == "about"
-                  ? "flex translate-y-0"
-                  : "hidden -translate-y-4"
-              } transition-all duration-300 flex-col gap-3 mt-3`}
+                  ? "opacity-100 max-h-50"
+                  : "opacity-0 max-h-0"
+              } overflow-hidden transition-all duration-300 ease-in-out flex-col gap-2 mt-3`}
             >
-              <a className="flex flex-col" href="/about">
-                <span className="text-white text-xl">About us</span>
+              <a
+                className="flex flex-col hover:bg-neutral-800 rounded-2xl px-4 py-2"
+                href="/about"
+              >
+                <span className="text-white text-lg">About us</span>
                 <span className="text-neutral-400 text-base">
                   Find out more about our organization and leads
                 </span>
               </a>
-              <a className="flex flex-col" href="/teams">
-                <span className="text-white text-xl">Teams</span>
+              <a
+                className="flex flex-col hover:bg-neutral-800 rounded-2xl px-4 py-2"
+                href="/teams"
+              >
+                <span className="text-white text-lg">Teams</span>
                 <span className="text-neutral-400 text-base">
                   Discover our subteams, find where you belong
                 </span>
               </a>
-              <a className="flex flex-col" href="/join">
-                <span className="text-white text-xl">Join</span>
+              <a
+                className="flex flex-col hover:bg-neutral-800 rounded-2xl px-4 py-2"
+                href="/join"
+              >
+                <span className="text-white text-lg">Join</span>
                 <span className="text-neutral-400 text-base">
                   Get all the information you need to join
                 </span>
@@ -214,32 +225,31 @@ const Navbar = () => {
             <div
               className={`${
                 activeDropdown == "sponsors"
-                  ? "flex translate-y-0"
-                  : "hidden translate-y-10"
-              } transition-all duration-300 flex-col gap-3 mt-3`}
+                  ? "opacity-100 max-h-50"
+                  : "opacity-0 max-h-0"
+              } overflow-hidden transition-all duration-300 ease-in-out flex-col gap-2 mt-3`}
             >
-              <a className="flex flex-col" href="/sponsors">
-                <span className="text-white text-xl">Our Sponsors</span>
+              <a
+                className="flex flex-col hover:bg-neutral-800 rounded-2xl px-4 py-2"
+                href="/sponsors"
+              >
+                <span className="text-white text-lg">Our Sponsors</span>
                 <span className="text-neutral-400 text-base">
                   Browse a list of our generous sponsors
                 </span>
               </a>
-              <a className="flex flex-col" href="/sponsor-into">
-                <span className="text-white text-xl">Become a Sponsor</span>
+              <a
+                className="flex flex-col hover:bg-neutral-800 rounded-2xl px-4 py-2"
+                href="/sponsor-into"
+              >
+                <span className="text-white text-lg">Become a Sponsor</span>
                 <span className="text-neutral-400 text-base">
                   The how and why behind a partnership with IEM
                 </span>
               </a>
             </div>
           </div>
-          <div
-            onClick={() => {
-              activeDropdown == "cars"
-                ? setActiveDropdown("")
-                : setActiveDropdown("cars");
-            }}
-            className="text-white py-2 rounded-lg px-3"
-          >
+          <div className="text-white py-2 rounded-lg px-3">
             <div className="flex flex-row items-center">
               <a href="/cars">Cars</a>
             </div>
