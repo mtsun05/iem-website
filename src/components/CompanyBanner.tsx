@@ -2,10 +2,9 @@ interface BannerProps {
   icons: {
     icon: string;
   }[];
-  goesLeft?: boolean;
 }
 
-const Banner = ({ icons, goesLeft = false }: BannerProps) => {
+const Banner = ({ icons }: BannerProps) => {
   return (
     <div className="banner-wrapper rounded-xl flex max-w-screen w-full mx-auto transition-color duration-300">
       <div className="absolute gradient-left-black h-full w-[200px] z-10"></div>

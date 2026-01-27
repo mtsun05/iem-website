@@ -226,7 +226,7 @@ function Home() {
                 <span className="text-white mx-3 text-xl font-extralight">
                   Outcomes
                 </span>
-                <CompanyBanner icons={companyIcons} goesLeft />
+                <CompanyBanner icons={companyIcons} />
               </div>
               <div className="flex flex-row items-center gap-10">
                 <span className="text-white mx-3 text-xl font-extralight">
