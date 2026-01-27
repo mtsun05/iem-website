@@ -60,7 +60,12 @@ body {
   overflow: hidden;
 }
 
+.banner-wrapper .wrapper {
+  display: flex;
+}
+
 .banner-wrapper .icons {
+  display: flex;
   animation: swipeLeft 17000ms linear infinite;
 }
 

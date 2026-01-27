@@ -7,9 +7,9 @@ interface BannerProps {
 const Banner = ({ icons }: BannerProps) => {
   return (
     <div className="banner-wrapper rounded-xl flex max-w-screen w-full mx-auto transition-color duration-300">
-      <div className="absolute gradient-left-black h-full w-[200px] z-10"></div>
-      <div className="wrapper flex py-5">
-        <div className="icons flex items-center">
+      <div className="absolute left-0 translate-x-[120px] gradient-left-black h-full w-[200px] z-10"></div>
+      <div className="wrapper py-5">
+        <div className="icons items-center shrink-0">
           {icons.map(({ icon }) => (
             <img
               key={`${icon}-1`}
@@ -18,7 +18,7 @@ const Banner = ({ icons }: BannerProps) => {
             />
           ))}
         </div>
-        <div className="icons flex items-center">
+        <div className="icons items-center shrink-0">
           {icons.map(({ icon }) => (
             <img
               key={`${icon}-2`}

@@ -51,7 +51,6 @@ function Home() {
   const expVisible = useIsVisible(expRequired, 0.2);
 
   const contentImg = useRef<HTMLDivElement>(null);
-  const contentImgVisible = useIsVisible(contentImg, 0.2);
 
   const countContainer = useRef<HTMLDivElement>(null);
 
@@ -97,6 +96,21 @@ function Home() {
         },
       });
       tl.fromTo(
+        contentImg.current,
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.1,
+        },
+        0,
+      );
+
+      tl.fromTo(
         ".selector",
         {
           opacity: 0,
@@ -108,6 +122,7 @@ function Home() {
           duration: 0.3,
           stagger: 0.1,
         },
+        0.3,
       );
     },
     { dependencies: [] },
@@ -130,7 +145,7 @@ function Home() {
         {
           opacity: 1,
           stagger: 0.2,
-          ease: "power2.inOut",
+          ease: "power3.in",
         },
       );
     },
@@ -223,13 +238,13 @@ function Home() {
               } transition-all duration-1000 gap-4`}
             >
               <div className="flex flex-row items-center gap-10">
-                <span className="text-white mx-3 text-xl font-extralight">
-                  Outcomes
+                <span className="text-white w-[75px] mx-3 text-xl font-extralight">
+                  Alumni Outcomes
                 </span>
                 <CompanyBanner icons={companyIcons} />
               </div>
               <div className="flex flex-row items-center gap-10">
-                <span className="text-white mx-3 text-xl font-extralight">
+                <span className="text-white w-[75px] mx-3 text-xl font-extralight">
                   Sponsors
                 </span>
                 <CompanyBanner icons={sponsorIcons} />
@@ -321,17 +336,10 @@ function Home() {
                   </span>
                 </div>
               </div>
-              <div
-                ref={contentImg}
-                className={`${
-                  contentImgVisible
-                    ? "translate-y-0 opacity-100 blur-none"
-                    : "translate-y-20 opacity-0 blur-lg"
-                } transition-all duration-1000 md:w-1/2 lg:h-[400px]`}
-              >
+              <div ref={contentImg} className="md:w-1/2 lg:h-[400px]">
                 {/*content*/}
                 <img
-                  className="rounded-2xl object-contain"
+                  className="selector-img rounded-2xl object-contain"
                   src={contentSource}
                   loading="lazy"
                 />
@@ -449,19 +457,19 @@ function Home() {
                 className="grid grid-cols-2 gap-4 text-center w-full text-white"
               >
                 <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-900 rounded-2xl py-5 transition-color duration-300">
-                  <IoPeopleSharp className="size-[4em]" />
+                  <IoPeopleSharp className="size-[3.5em]" />
                   <CountUp end={2000} duration={4000} label="Members" />
                 </div>
                 <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-900 rounded-2xl py-5 transition-color duration-300">
-                  <ImBooks className="size-[4em]" />
+                  <ImBooks className="size-[3.5em]" />
                   <CountUp end={20} duration={1500} label="Majors" />
                 </div>
                 <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-900 rounded-2xl py-5 transition-color duration-300">
-                  <FaUserGraduate className="size-[4em]" />
+                  <FaUserGraduate className="size-[3.5em]" />
                   <CountUp end={1000} duration={3000} label="Alumni" />
                 </div>
                 <div className="count-card flex flex-row justify-center gap-8 items-center bg-neutral-900 rounded-2xl py-5 transition-color duration-300">
-                  <FaGlobeAmericas className="size-[4em]" />
+                  <FaGlobeAmericas className="size-[3.5em]" />
                   <CountUp end={4} duration={800} label="Continents" />
                 </div>
               </div>
