@@ -20,6 +20,7 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { FaWrench } from "react-icons/fa";
 import { FaLayerGroup } from "react-icons/fa6";
 import { FaHandshakeSimple } from "react-icons/fa6";
+import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -39,7 +40,7 @@ function Home() {
   const excellenceVisible = useIsVisible(excellenceRef, 0.2);
 
   const bannerRef = useRef<HTMLDivElement>(null);
-  const bannerVisible = useIsVisible(bannerRef, 0.2);
+  const bannerVisible = useIsVisible(bannerRef, 0.5);
 
   const offerRef = useRef<HTMLDivElement>(null);
   const offerVisible = useIsVisible(offerRef, 0.2);
@@ -104,7 +105,7 @@ function Home() {
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.6,
           stagger: 0.1,
         },
         0,
@@ -122,7 +123,7 @@ function Home() {
           duration: 0.3,
           stagger: 0.1,
         },
-        0.3,
+        0,
       );
     },
     { dependencies: [] },
@@ -141,11 +142,13 @@ function Home() {
         ".bento-section",
         {
           opacity: 0,
+          y: 20,
         },
         {
           opacity: 1,
-          stagger: 0.2,
-          ease: "power3.in",
+          y: 0,
+          stagger: 0.1,
+          duration: 1,
         },
       );
     },
@@ -362,14 +365,14 @@ function Home() {
               your experience.
             </span>
             <div className="flex flex-col">
-              <div className="grid grid-cols-5 gap-4">
-                <div className="bento-section flex flex-row p-5 bg-neutral-900 rounded-2xl gap-5 col-span-3">
+              <div className="flex flex-col lg:grid grid-cols-10 gap-4">
+                <div className="bento-section flex flex-col md:flex-row p-5 bg-neutral-900 rounded-2xl gap-5 col-span-5">
                   <img
-                    className="w-2/3 object-cover shrink-0 rounded-xl"
+                    className="w-full md:w-2/3 object-cover shrink-0 rounded-xl"
                     src={rivianpic}
                     alt=""
                   />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col shrink">
                     <span className="text-white text-3xl mb-3">
                       Networking with Top Companies
                     </span>
@@ -383,43 +386,83 @@ function Home() {
                     </span>
                   </div>
                 </div>
-                <div className="bento-section flex flex-col p-5 bg-neutral-900 rounded-2xl col-span-2">
-                  <span className="text-white text-3xl mb-3">
-                    Constant Growth Opportunities
-                  </span>
-                  <span className="text-neutral-400 font-light">
-                    We are always on the lookout for things to improve within
-                    our projects. There is always something to work on, whether
-                    you are a complete beginner or a seasoned expert!
-                  </span>
+                <div className="flex flex-col md:grid grid-cols-2 col-span-5 gap-4">
+                  <div className="bento-section flex flex-col p-5 bg-neutral-900 rounded-2xl">
+                    <span className="text-white text-3xl mb-3">
+                      Constant Growth Opportunities
+                    </span>
+                    <span className="text-neutral-400 font-light">
+                      We are always on the lookout for things to improve within
+                      our projects.{" "}
+                      <span className="text-white">
+                        With our members being at all levels of experience,
+                      </span>{" "}
+                      there is always something to work on that will{" "}
+                      <span className="text-white">
+                        challenge you and improve your abilities as an engineer.
+                      </span>
+                    </span>
+                  </div>
+                  <div className="bento-section flex flex-col p-5 bg-neutral-900 rounded-2xl">
+                    <span className="text-white text-3xl mb-3">
+                      Unmatched Experience
+                    </span>
+                    <span className="text-neutral-400 font-light">
+                      We offer the opportunity to design, prototype, and build
+                      with industry-standard tools.{" "}
+                      <span className="text-white">
+                        Sharpen your skillset with tools like CAD (PTC Creo),
+                        GitLab, Docker, Matlab,
+                      </span>{" "}
+                      and others. Our team-based and integrated nature gives you
+                      valuable experience with working in an engineering team.
+                    </span>
+                  </div>
                 </div>
-                <div className="bento-section flex flex-col p-5 bg-neutral-900 rounded-2xl col-span-2">
-                  <span className="text-white text-3xl mb-3">
-                    Unmatched Engineering Experience
-                  </span>
-                  <span className="text-neutral-400 font-light">
-                    We offer the opportunity to design, prototype, and build
-                    with industry-standard tools. Sharpen your skillset with
-                    tools like CAD (PTC Creo), GitLab, Docker, Matlab, and
-                    others.
-                  </span>
-                </div>
-                <div className="bento-section flex flex-row p-5 bg-neutral-900 rounded-2xl gap-5 col-span-3">
+                <div className="bento-section flex flex-col md:flex-row p-5 bg-neutral-900 rounded-2xl gap-5 col-span-10">
                   <img
-                    className="w-2/3 object-cover shrink-0 rounded-xl"
+                    className="w-full md:w-2/3 object-cover shrink-0 rounded-xl"
                     src={team_pic2}
                     alt=""
                   />
-                  <div className="flex flex-col">
-                    <span className="text-white text-3xl mb-3">
-                      Massive Professional Network
-                    </span>
-                    <span className="text-neutral-400 font-light">
-                      Our project leads are very experienced and talented
-                      people, and always willing to help. Connect to learn more
-                      about their experiences, engineering, recruiting, and
-                      tools.
-                    </span>
+                  <div className="flex flex-col justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-white text-3xl mb-3">
+                        Massive Professional Network
+                      </span>
+                      <span className="text-neutral-400 font-light">
+                        Our project leads are very experienced and talented
+                        people, and always willing to help.{" "}
+                        <span className="text-white">
+                          Members have interned at companies like Tesla, John
+                          Deere, SpaceX, Rivian, NVIDIA, and GM,
+                        </span>{" "}
+                        just to name a few. Draw on their vast and rich
+                        professional experiences and build your own. Feel free
+                        to follow our{" "}
+                        <span className="text-white">LinkedIn</span> and{" "}
+                        <span className="text-white">Instagram</span> to keep up
+                        with what we're doing!
+                      </span>
+                    </div>
+                    <div className="flex flex-row gap-2 mt-3 md:mt-0">
+                      <a
+                        className="flex flex-row items-center text-white hover:text-neutral-200 transition-colors duration-300 w-fit"
+                        href="https://linkedin.com/company/illini-electric-motorsports"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaLinkedin className="size-10" />
+                      </a>
+                      <a
+                        className="flex flex-row items-center text-white hover:text-neutral-200 transition-colors duration-300 w-fit"
+                        href="https://www.instagram.com/illinoisfsae"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaInstagram className="size-10" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

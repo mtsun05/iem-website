@@ -34,7 +34,6 @@ Resources:
 
   MainBucketPolicy:
     Type: "AWS::S3::BucketPolicy"
-    DependsOn: CloudFrontDistribution
     Properties:
       Bucket: !Ref MainBucket
       PolicyDocument:
@@ -45,30 +44,46 @@ Resources:
             Effect: Allow
             Principal:
               Service: cloudfront.amazonaws.com
-            Resource: !Join
-              - ""
-              - - "arn:aws:s3:::"
-                - !Ref MainBucket
-                - "/*"
+            Resource: !Sub "arn:${AWS::Partition}:s3:::${MainBucket}/*"
             Condition:
               StringEquals:
-                "AWS:SourceArn": !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+                "aws:SourceArn": !Sub "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
 
   LoggingBucket:
     Type: "AWS::S3::Bucket"
     Properties:
-      AccessControl: LogDeliveryWrite
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
 
+  LoggingBucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref LoggingBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action:
+              - "s3:PutObject"
+            Effect: Allow
+            Principal:
+              Service: logging.s3.amazonaws.com
+            Resource: !Sub "arn:${AWS::Partition}:s3:::${LoggingBucket}/*"
+            Condition:
+              ArnLike:
+                "aws:SourceArn": !GetAtt MainBucket.Arn
+              StringEquals:
+                "aws:SourceAccount": !Sub "${AWS::AccountId}"
+
   CloudFrontDistribution:
     Type: "AWS::CloudFront::Distribution"
     Properties:
       DistributionConfig:
-        Aliases: !Ref DomainName
+        Aliases:
+          - !Ref DomainName
+          - !Sub www.${DomainName}
         Origins:
           - Id: S3Origin
             DomainName: !GetAtt MainBucket.RegionalDomainName
